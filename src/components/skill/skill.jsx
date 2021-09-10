@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import FormInput from "../forminput/form-input"
 
-export default function Skill() {
-
+const Skill = forwardRef((props,ref) => {
     const [state,setState] = useState({
         skill: ""
     });
@@ -11,10 +10,22 @@ export default function Skill() {
         setState({...state, [name]: value})
     }
 
-    // console.log(state)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.addData({id: props.id, state: state});
+    }
+
+    
+    // console.log(props)
     return (
         <div>
-            <form>
+            <form 
+                id="skill-form"
+                onSubmit={handleSubmit}
+                onKeyPress={
+                    (event) => event.key === "Enter" && event.preventDefault()
+                }
+            >
                 <FormInput
                     label={"Skill: "}
                     id="skill" 
@@ -24,7 +35,16 @@ export default function Skill() {
                     type="text"
                     required
                 />
+
+                <button 
+                    style={{display: "none"}}
+                    ref={ref}
+                >
+                    submit
+                </button>
             </form>
         </div>
     )
-}
+});
+
+export default Skill;

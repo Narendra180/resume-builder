@@ -4,14 +4,14 @@ function ResumePreview(props) {
     console.log(props)
     return(
         <div>
-            <h1>{props.profileSection.firstname}</h1>
+            <h1>{props.profileData.firstname}</h1>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        profileSection: state.profileSection.profileSection
+        profileData: state.profileSection.profileData
     }
 }
 

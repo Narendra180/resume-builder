@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import FormInput from "../forminput/form-input";
 
-export default function Course() {
+const Course = forwardRef((props, ref) => {
 
     const [state,setState] = useState({
         nameofcourse: "",
@@ -14,9 +14,19 @@ export default function Course() {
         setState({...state, [name]: value})
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.addData({id: props.id, state: state});
+        // console.log("Submitted");
+    }
+
     return (
-        <div>
-            <form>
+        <div className="course-from-div">
+            <form id="course-form" onSubmit={handleSubmit}
+                onKeyPress={(e) => { 
+                    e.key==="Enter" && e.preventDefault();
+                }}
+            >
                 <FormInput
                     label={"Name of Course: "}
                     id="nameofcourse" 
@@ -56,7 +66,21 @@ export default function Course() {
                     type="text"
                     required
                 />
+
+                <button 
+                    style={{display: "none"}}
+                    ref={ref}
+                >
+                    submit
+                </button>
             </form>
+
+            {/* <button onClick={handlebtn} type="submit" form="course-form">
+                submit
+            </button> */}
+            
         </div>
     )
-}
+});
+
+export default Course;

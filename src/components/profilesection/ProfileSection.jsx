@@ -54,9 +54,11 @@ function ProfileSection({setProfileSection}) {
                 name="phonenumber"
                 value={state.phonenumber}
                 onChange={handleChange}
+                pattern="\d*"
                 type="tel"
                 maxLength="10"
                 placeholder="Enter your phone number"
+                title="only numbers allowed"
                 required
             />
 

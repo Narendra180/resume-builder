@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    profileSection: {}
+    profileData: {}
 }
 
 const ProfileReducer = (state=INITIAL_STATE, action) => {
@@ -7,7 +7,7 @@ const ProfileReducer = (state=INITIAL_STATE, action) => {
         case "SET_PROFILE_SECTION":
             return {
                 ...state,
-                profileSection: action.payload
+                profileData: action.payload
             };
         default:
             return state;
