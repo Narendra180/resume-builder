@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import FormInput from "../forminput/form-input";
 import FormTextarea from "../formtextarea/form-textarea";
 
-export default function SocialMention() {
-
+const SocialMention = forwardRef(({addData,id}, ref) => {
     const [state,setState] = useState({
         nameofsocialmedia: "",
         links: "",
@@ -13,11 +12,21 @@ export default function SocialMention() {
         setState({...state, [name]: value})
     }
 
-    // console.log(state)
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        addData({id,state});
+    }
 
     return (
-        <div>
-            <form>
+        <div className="social-mention-form">
+            <form
+                onSubmit={handleSubmit}
+                onKeyPress={
+                    (e) => {
+                        return e.key === "Enter" && e.preventDefault();
+                    }
+                }
+            >
                 <FormInput
                     label={"Name of Social Media: "}
                     id="nameofsocialmedia" 
@@ -36,8 +45,17 @@ export default function SocialMention() {
                     type="text"
                 />
 
-                
+                <button
+                    style={
+                        {display: "none"}
+                    }
+                    ref={ref}
+                >
+                    submit
+                </button>
             </form>
         </div>
     )
-}
+}); 
+
+export default SocialMention;

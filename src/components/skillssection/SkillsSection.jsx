@@ -4,12 +4,10 @@ import Skill from '../skill/skill';
 import { setSkillsSection } from '../../redux/skills/skillactions';
 import { connect } from 'react-redux';
 
-const skillData = [];
-
-
 function SkillSection({ setSkillsSection }) {
 
     const btnRefsArray = useRef([]);
+    const skillData = useRef([]);
 
     let id = useRef(0);
 
@@ -20,9 +18,8 @@ function SkillSection({ setSkillsSection }) {
     }
 
     const addData = ({id: i, state: s}) => {
-        skillData[i] = s;
+        skillData.current[i] = s;
         // console.log(skillData)
-        setSkillsSection(skillData)
     }
 
     const [skillsArray,setSkillsArray] = useState(
@@ -54,6 +51,8 @@ function SkillSection({ setSkillsSection }) {
         btnRefsArray.current.forEach(btn => {
             btn.click();
         })
+
+        setSkillsSection(skillData.current)
     }
 
     return (

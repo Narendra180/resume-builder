@@ -1,18 +1,67 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import MiniProject from '../miniproject/miniproject';
+import { setMiniProjectSection } from '../../redux/miniproject/miniprojectaction';
+import { connect } from 'react-redux';
 
-export default function MiniProjectSection() {
+function MiniProjectSection({ setMiniProjectSection }) {
 
-    const [miniProjectsArray,setMiniProjectsArray] = useState([<MiniProject key={uuidv4()}/>]);
+    let buttonRefsArray = useRef([]);
+    const miniProjectData = useRef([]);
+
+    const addRefToArray = (ele) => {
+        if(ele && !buttonRefsArray.current.includes(ele)) {
+            buttonRefsArray.current.push(ele);
+        }
+    }
+
+    const addData = ({id: i, state: s}) => {
+        miniProjectData.current[i] = s;
+        console.log(miniProjectData.current)
+    }
+
+    let id = useRef(0);
+
+    const [miniProjectsArray,setMiniProjectsArray] = useState(
+        [
+            <MiniProject 
+                key={uuidv4()}
+                addData={addData}
+                id={id.current}
+                ref={addRefToArray}
+            />
+        ]
+    );
 
     const handleAddProject = () => {
-        setMiniProjectsArray(miniProjectsArray.concat(<MiniProject key={uuidv4()}/>));
+        id.current += 1;
+        setMiniProjectsArray(
+            miniProjectsArray.concat(
+                <MiniProject 
+                    key={uuidv4()}
+                    addData={addData}
+                    id={id.current}
+                    ref={addRefToArray}
+                />
+            )
+        );
+    }
+
+    const handleSavingThisSection = () => {
+        buttonRefsArray.current.forEach(btn => {
+            btn.click();
+        })
+        setMiniProjectSection(miniProjectData.current)
     }
 
     return (
         <div>
             {miniProjectsArray}
+            <button
+                onClick={handleSavingThisSection}
+            >
+                save
+            </button>
             <button
                 onClick={handleAddProject}
             >
@@ -21,3 +70,11 @@ export default function MiniProjectSection() {
         </div>
     );
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setMiniProjectSection: (data) => dispatch(setMiniProjectSection(data))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(MiniProjectSection);

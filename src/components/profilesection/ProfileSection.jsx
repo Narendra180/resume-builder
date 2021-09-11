@@ -10,7 +10,8 @@ function ProfileSection({setProfileSection}) {
         firstname: "",
         lastname: "",
         phonenumber: "",
-        address: ""
+        address: "",
+        profilePicture: ""
     });
 
     const handleSubmit = (e) => {
@@ -23,68 +24,81 @@ function ProfileSection({setProfileSection}) {
         setState({...state, [name]: value})
     }
 
+    const handlImageChange = (event) => {
+        if(event.target.files[0]) {
+            const fileReader = new FileReader();
+            fileReader.onload = (e) => {
+                setState({...state, profilePicture: e.target.result});
+            };
+            fileReader.readAsDataURL(event.target.files[0]);
+        }   
+    }
+
     // console.log(state);
     return (
-        <form onSubmit={handleSubmit}>
-            <FormInput
-                label={"First Name: "}
-                id="firstname" 
-                name="firstname"
-                value={state.firstname}
-                onChange={handleChange}
-                type="text"
-                placeholder="Enter Your first name"
-                required
-            />
+        <div>
+            <form onSubmit={handleSubmit}>
+                <FormInput
+                    label={"First Name: "}
+                    id="firstname" 
+                    name="firstname"
+                    value={state.firstname}
+                    onChange={handleChange}
+                    type="text"
+                    placeholder="Enter Your first name"
+                    required
+                />
 
-            <FormInput
-                label={"Last Name: "}
-                id="lastname" 
-                name="lastname"
-                value={state.lastname}
-                onChange={handleChange}
-                type="text"
-                placeholder="Enter your last name"
-                required
-            />
+                <FormInput
+                    label={"Last Name: "}
+                    id="lastname" 
+                    name="lastname"
+                    value={state.lastname}
+                    onChange={handleChange}
+                    type="text"
+                    placeholder="Enter your last name"
+                    required
+                />
 
-            <FormInput
-                label={"Phone Number: "}
-                id="phonenumber"
-                name="phonenumber"
-                value={state.phonenumber}
-                onChange={handleChange}
-                pattern="\d*"
-                type="tel"
-                maxLength="10"
-                placeholder="Enter your phone number"
-                title="only numbers allowed"
-                required
-            />
+                <FormInput
+                    label={"Phone Number: "}
+                    id="phonenumber"
+                    name="phonenumber"
+                    value={state.phonenumber}
+                    onChange={handleChange}
+                    pattern="\d*"
+                    type="tel"
+                    maxLength="10"
+                    placeholder="Enter your phone number"
+                    title="only numbers allowed"
+                    required
+                />
 
-            <FormInput
-                label="Profile Picture: "
-                id="profilepicture"
-                name="profilepicture"
-                type="file"
-                accept="image/*"
-                required
-            />
+                <FormInput
+                    label="Profile Picture: "
+                    id="profilepicture"
+                    name="profilepicture"
+                    type="file"
+                    onChange={handlImageChange}
+                    accept="image/*"
+                    required
+                />
 
 
-            <FormTextarea
-                label="Address: "
-                id="address"
-                name="address"
-                value={state.address}
-                onChange={handleChange}
-                placeholder="Enter your address"
-            />
+                <FormTextarea
+                    label="Address: "
+                    id="address"
+                    name="address"
+                    value={state.address}
+                    onChange={handleChange}
+                    placeholder="Enter your address"
+                />
 
-            <button type="submit">
-                save
-            </button>
-        </form>
+                <button type="submit">
+                    save
+                </button>
+            </form>
+        </div>
     );
 }
 

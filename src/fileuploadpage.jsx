@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 
 export default function FileUploadPage(){
 
-    // const [selectedFile, setSelectedFile] = useState(new File([""], "filename"));
-    // const [isFileSelected, setIsFileSelected] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(new File([""], "filename"));
+    const [isFileSelected, setIsFileSelected] = useState(false);
     const [image, setImage] = useState("k");
 
     function handleChange(event) {
@@ -13,7 +13,6 @@ export default function FileUploadPage(){
             setImage(e.target.result);
         };
         fileReader.readAsDataURL(event.target.files[0]);
-        setIsFileSelected(true);
         console.log(image)
     }
 

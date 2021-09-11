@@ -67,6 +67,13 @@ const Course = forwardRef((props, ref) => {
                     required
                 />
 
+                <button
+                    type="button"
+                    onClick={() => props.deleteCourse(props.id)}
+                >
+                    &#10005;
+                </button>
+
                 <button 
                     style={{display: "none"}}
                     ref={ref}

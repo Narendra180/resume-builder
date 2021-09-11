@@ -1,15 +1,20 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Course from "../course/course";
 import { connect } from "react-redux";
 import { setEducationSection } from '../../redux/education/educationaction';
 
-const educationData = [];
-
 function EducationSection({ setEducationSection }) {
 
     const refArray = useRef([]);
+    const educationData = useRef([]);
     let id = useRef(0);
+    let updatedCoursesArray = useRef([]);
+
+    useEffect(() => {
+        updatedCoursesArray.current = coursesArray;
+    })
+
     const addRefToRefArray = (ele) => {
         if(ele && !refArray.current.includes(ele)) {
             refArray.current.push(ele);
@@ -18,8 +23,16 @@ function EducationSection({ setEducationSection }) {
     }
 
     const addData = ({id: i, state: s}) => {
-        educationData[i] = s;
+        educationData.current[i] = s;
         console.log(educationData)
+    }
+
+    const handleDeleteCourse = (recievedId) => {
+        id.current -= 1;
+        // if(id >= 1) {
+        setCoursesArray(updatedCoursesArray.current.filter((ele,i) => i!==recievedId));
+            // educationData.current.pop(id);
+        // }
     }
 
     const [coursesArray,setCoursesArray] = useState(
@@ -29,9 +42,11 @@ function EducationSection({ setEducationSection }) {
                 id={id.current}
                 ref={addRefToRefArray} 
                 addData={addData}
+                deleteCourse={handleDeleteCourse}
             />
         ]
     );
+
     const handleAddCourse = () => {
         id.current += 1;
         setCoursesArray(
@@ -41,6 +56,7 @@ function EducationSection({ setEducationSection }) {
                     id={id.current}
                     ref={addRefToRefArray} 
                     addData={addData}
+                    deleteCourse={handleDeleteCourse}
                 />
             )
         );
@@ -53,7 +69,7 @@ function EducationSection({ setEducationSection }) {
             }
         );
 
-        setEducationSection(educationData);
+        setEducationSection(educationData.current);
 
     }
 

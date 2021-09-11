@@ -9,7 +9,7 @@ function App() {
 		<div className="app">
 			<TabComponent />
 			
-			<ResumePreview />
+			{/* <ResumePreview /> */}
 		</div>
 	)
 }
