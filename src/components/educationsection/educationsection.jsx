@@ -6,30 +6,15 @@ import { setEducationSection } from '../../redux/education/educationaction';
 
 function EducationSection({ setEducationSection }) {
 
-    // const refArray = useRef([]);
-    const btnRefsObj = useRef({});
     const btnRefsArray = useRef([]);
     const educationData = useRef([]);
     let updatedCoursesArray = useRef([]);
 
     useEffect(() => {
         updatedCoursesArray.current = coursesArray;
-        console.log(btnRefsArray.current);
     })
 
-    // const addRefToRefArray = (ele) => {
-    //     // console.log(typeof ele.parentElement.dataset.id);
-    //     if(ele && !refArray.current.includes(ele)) {
-    //         refArray.current.push(ele);
-    //     }
-    // }
-
     const storeBtnRefs = (ele) => {
-        // if(ele) {
-        //     let id = ele.parentElement.dataset.id;
-        //     btnRefsObj.current[id] = ele;
-        //     // console.log(btnRefsObj.current);
-        // }
         if(ele) {
             let id = ele.parentElement.dataset.id;
             let tempObj = {[id] : ele};
@@ -38,12 +23,6 @@ function EducationSection({ setEducationSection }) {
     }
 
     const addData = ({id: i, state: s}) => {
-        // educationData.current[i] = s;
-        // console.log(educationData);
-        
-        // if(educationData.current.includes(tempObj)) {
-        //     console.log(true);
-        // }
 
         let index = educationData.current.findIndex((obj) => {
             return obj.hasOwnProperty(i);
@@ -55,51 +34,32 @@ function EducationSection({ setEducationSection }) {
         } else {
             educationData.current[index][i] = s;
         }
-
-        // console.log(index);
+        
     }
 
     const handleDeleteCourse = (recievedId) => {
-        // if(updatedCoursesArray.current.length > 1) {
-        //     delete educationData.current[recievedId];
-        //     delete btnRefsObj.current[recievedId];
-        //     // console.log(btnRefsObj.current);
-        //     setCoursesArray(
-        //         updatedCoursesArray.current.filter((course) => {
-        //             return course.props.id !== recievedId; 
-        //         })
-        //     );
-        // }
-
-        // delete educationData.current[recievedId];
-
-        // let removeDataCallBack = (ele,i) => {
-        //     if(ele.hasOwnProperty(recievedId)) {
-        //         btnRefsArray.current.splice(i,1);
-        //     }
-        //     return ele.hasOwnProperty(recievedId);
-        // }
-
-        let index = educationData.current.findIndex((obj) => {
-            return obj.hasOwnProperty(recievedId);
-        });
-
-        if(index > -1)  {
-            educationData.current.splice(index, 1);
-        }
-
-        btnRefsArray.current.find((ele,i) => {
-            if(ele.hasOwnProperty(recievedId)) {
-                btnRefsArray.current.splice(i,1);
+        if(updatedCoursesArray.current.length > 1) {
+            let index = educationData.current.findIndex((obj) => {
+                return obj.hasOwnProperty(recievedId);
+            });
+    
+            if(index > -1)  {
+                educationData.current.splice(index, 1);
             }
-            return ele.hasOwnProperty(recievedId);
-        });
-
-        setCoursesArray(
-            updatedCoursesArray.current.filter((course) => {
-                return course.props.id !== recievedId; 
-            })
-        );
+    
+            btnRefsArray.current.find((obj,i) => {
+                if(obj.hasOwnProperty(recievedId)) {
+                    btnRefsArray.current.splice(i,1);
+                }
+                return obj.hasOwnProperty(recievedId);
+            });
+    
+            setCoursesArray(
+                updatedCoursesArray.current.filter((course) => {
+                    return course.props.id !== recievedId; 
+                })
+            );
+        }
     }
 
     const [coursesArray,setCoursesArray] = useState(
@@ -129,15 +89,6 @@ function EducationSection({ setEducationSection }) {
     }
 
     const handleSavingThisSection = () => {
-        // console.log("handlesavesection",refArray.current)
-        // refArray.current.forEach((buttonRef) => {
-        //         buttonRef.click();
-        //     }
-        // );
-
-        // Object.values(btnRefsObj.current).forEach((buttonRef) => {
-        //     buttonRef.click();
-        // });
 
         btnRefsArray.current.forEach((obj) => {
             for(let key in obj)  {
