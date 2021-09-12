@@ -22,10 +22,12 @@ const Course = forwardRef((props, ref) => {
 
     return (
         <div className="course-from-div">
-            <form id="course-form" onSubmit={handleSubmit}
+            <form id="course-form" 
                 onKeyPress={(e) => { 
                     e.key==="Enter" && e.preventDefault();
                 }}
+                onSubmit={handleSubmit}
+                data-id = {props.id}
             >
                 <FormInput
                     label={"Name of Course: "}
@@ -77,6 +79,7 @@ const Course = forwardRef((props, ref) => {
                 <button 
                     style={{display: "none"}}
                     ref={ref}
+                    type="submit"
                 >
                     submit
                 </button>
