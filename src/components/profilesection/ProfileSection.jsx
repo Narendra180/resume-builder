@@ -92,6 +92,7 @@ function ProfileSection({setProfileSection}) {
                     value={state.address}
                     onChange={handleChange}
                     placeholder="Enter your address"
+                    required
                 />
 
                 <button type="submit">

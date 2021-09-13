@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 
 import TabComponent from './components/tabscomponent/tab-component';
-// import ResumePreview from './components/resumepreview';
+import ResumePreview from './components/resumepreview';
 import './App.css';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
 		<div className="app">
 			<TabComponent />
 			
-			{/* <ResumePreview /> */}
+			<ResumePreview />
 		</div>
 	)
 }

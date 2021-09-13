@@ -9,7 +9,7 @@ import SocialMentionReducer from './socialmention/socialmentionreducer';
 export default combineReducers({
     profileSection: ProfileReducer,
     educationSection: EducationReducer,
-    skilsSection: SkillsReducer,
+    skillsSection: SkillsReducer,
     miniProjectSection: MiniProjectReducer,
     socialMentionSection: SocialMentionReducer
 })

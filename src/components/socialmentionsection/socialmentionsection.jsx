@@ -94,7 +94,8 @@ function SocialMentionSection({setSocialMentionSection}) {
             }
         });
 
-        setSocialMentionSection(socialMentionData.current);
+        // we have to return new array every time or else component won't re-render
+        setSocialMentionSection([...socialMentionData.current]);
     }
 
     return (

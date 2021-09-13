@@ -1,5 +1,11 @@
 const INITIAL_STATE = {
-    profileData: {}
+    profileData: {
+        firstname: "",
+        lastname: "",
+        phonenumber: "",
+        address: "",
+        profilePicture: ""
+    }
 }
 
 const ProfileReducer = (state=INITIAL_STATE, action) => {

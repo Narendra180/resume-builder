@@ -96,8 +96,10 @@ function EducationSection({ setEducationSection }) {
             }
         });
 
-        setEducationSection(educationData.current);
-
+        // we have to return new array every time or else component won't re-render
+        if(educationData.current.length) {
+            setEducationSection([...educationData.current]);
+        }
     }
 
     return (
@@ -119,7 +121,7 @@ function EducationSection({ setEducationSection }) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setEducationSection: state => dispatch(setEducationSection(state))
+        setEducationSection: educationData => dispatch(setEducationSection(educationData))
     }
 }
 

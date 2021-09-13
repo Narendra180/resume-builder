@@ -95,7 +95,9 @@ function SkillSection({ setSkillsSection }) {
             }
         });
 
-        setSkillsSection(skillData.current)
+        // we have to return new array every time or else component won't re-render
+        if(skillData.current.length)
+            setSkillsSection([...skillData.current])
     }
 
     return (

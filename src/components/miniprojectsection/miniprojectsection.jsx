@@ -95,7 +95,9 @@ function MiniProjectSection({ setMiniProjectSection }) {
                 obj[key].click();
             }
         });
-        setMiniProjectSection(miniProjectData.current)
+        
+        // we have to return new array every time or else component won't re-render
+        setMiniProjectSection([...miniProjectData.current]);
     }
 
     return (

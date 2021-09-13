@@ -23,13 +23,13 @@ function TabsBar({handleClick}) {
 
             <TabButton 
                 handleClick={handleClick}
-                btnContent={"Mini Project"}
+                btnContent={"Projects"}
                 tabNumber={3}
             />
 
             <TabButton 
                 handleClick={handleClick}
-                btnContent={"Social"}
+                btnContent={"Social Media"}
                 tabNumber={4}
             />
         </div>
