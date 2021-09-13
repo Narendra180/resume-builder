@@ -4,7 +4,7 @@ import SocialMention from '../socialmention/socialmention';
 import { connect } from 'react-redux';
 import { setSocialMentionSection } from '../../redux/socialmention/socialmentionaction';
 
-function SocialMentionSection({setSocialMentionSection}) {
+function SocialMentionSection({setSocialMentionSection,style}) {
 
     const btnRefsArray = useRef([]);
     const socialMentionData = useRef([]);
@@ -99,7 +99,7 @@ function SocialMentionSection({setSocialMentionSection}) {
     }
 
     return (
-        <div>
+        <div style={style}> 
             {socialMentionArray}
 
             <button onClick={handleSavingThisSection}>

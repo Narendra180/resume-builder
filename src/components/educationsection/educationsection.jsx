@@ -4,7 +4,7 @@ import Course from "../course/course";
 import { connect } from "react-redux";
 import { setEducationSection } from '../../redux/education/educationaction';
 
-function EducationSection({ setEducationSection }) {
+function EducationSection({ setEducationSection, style }) {
 
     const btnRefsArray = useRef([]);
     const educationData = useRef([]);
@@ -103,7 +103,7 @@ function EducationSection({ setEducationSection }) {
     }
 
     return (
-        <div>
+        <div style={style}>
             {coursesArray}
             <button
                 onClick={handleSavingThisSection}

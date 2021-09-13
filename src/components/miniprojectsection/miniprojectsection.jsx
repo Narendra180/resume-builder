@@ -4,7 +4,7 @@ import MiniProject from '../miniproject/miniproject';
 import { setMiniProjectSection } from '../../redux/miniproject/miniprojectaction';
 import { connect } from 'react-redux';
 
-function MiniProjectSection({ setMiniProjectSection }) {
+function MiniProjectSection({ setMiniProjectSection, style }) {
 
     let btnRefsArray = useRef([]);
     const miniProjectData = useRef([]);
@@ -101,7 +101,7 @@ function MiniProjectSection({ setMiniProjectSection }) {
     }
 
     return (
-        <div>
+        <div style={style}>
             {miniProjectsArray}
             <button
                 onClick={handleSavingThisSection}

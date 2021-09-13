@@ -4,8 +4,7 @@ import FormTextarea from "../formtextarea/form-textarea";
 import { connect } from "react-redux";
 import { setProfileSection } from '../../redux/profile/profileaction';
 
-function ProfileSection({setProfileSection}) {
-
+function ProfileSection({setProfileSection, style}) {
     const [state,setState] = useState({
         firstname: "",
         lastname: "",
@@ -36,7 +35,7 @@ function ProfileSection({setProfileSection}) {
 
     // console.log(state);
     return (
-        <div>
+        <div style={style}>
             <form onSubmit={handleSubmit}>
                 <FormInput
                     label={"First Name: "}

@@ -4,7 +4,7 @@ import Skill from '../skill/skill';
 import { setSkillsSection } from '../../redux/skills/skillactions';
 import { connect } from 'react-redux';
 
-function SkillSection({ setSkillsSection }) {
+function SkillSection({ setSkillsSection, style }) {
 
     const btnRefsArray = useRef([]);
     const skillData = useRef([]);
@@ -101,7 +101,7 @@ function SkillSection({ setSkillsSection }) {
     }
 
     return (
-        <div>
+        <div style={style}>
             {skillsArray}
 
             <button
