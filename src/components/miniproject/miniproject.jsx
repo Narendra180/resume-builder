@@ -2,7 +2,7 @@ import { useState, forwardRef } from "react";
 import FormInput from "../forminput/form-input";
 import FormTextarea from "../formtextarea/form-textarea";
 
-const MiniProject = forwardRef(({addData,id}, ref) => {
+const MiniProject = forwardRef(({addData,id, deleteMiniProject}, ref) => {
         const [state,setState] = useState({
             projectname: "",
             techstackused: "",
@@ -26,6 +26,7 @@ const MiniProject = forwardRef(({addData,id}, ref) => {
                     onKeyPress={(event) => {
                         return event.key === "Enter" && event.preventDefault();
                     }}
+                    data-id = {id}
                 >
                     <FormInput
                         label={"Project Name: "}
@@ -53,6 +54,13 @@ const MiniProject = forwardRef(({addData,id}, ref) => {
                         onChange={handleChange}
                         type="text"
                     />
+
+                    <button
+                    type="button"
+                    onClick={() => deleteMiniProject(id)}
+                    >
+                        &#10005;
+                    </button>
 
                     <button
                         style={

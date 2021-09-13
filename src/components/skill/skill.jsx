@@ -25,6 +25,7 @@ const Skill = forwardRef((props,ref) => {
                 onKeyPress={
                     (event) => event.key === "Enter" && event.preventDefault()
                 }
+                data-id={props.id}
             >
                 <FormInput
                     label={"Skill: "}
@@ -35,6 +36,13 @@ const Skill = forwardRef((props,ref) => {
                     type="text"
                     required
                 />
+
+                <button
+                    type="button"
+                    onClick={() => props.deleteCourse(props.id)}
+                >
+                    &#10005;
+                </button>
 
                 <button 
                     style={{display: "none"}}

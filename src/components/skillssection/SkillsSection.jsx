@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Skill from '../skill/skill';
 import { setSkillsSection } from '../../redux/skills/skillactions';
@@ -8,49 +8,92 @@ function SkillSection({ setSkillsSection }) {
 
     const btnRefsArray = useRef([]);
     const skillData = useRef([]);
+    let updatedSkillsArray = useRef([]);
 
-    let id = useRef(0);
+    useEffect(
+        () => {
+            updatedSkillsArray.current = skillsArray;
+        }
+    );
 
-    const addRefToBtnRefsArray = (ele) => {
-        if(ele && !btnRefsArray.current.includes(ele)) {
-            btnRefsArray.current.push(ele);
+    const storeBtnRefs = (ele) => {
+        if(ele) {
+            let id = ele.parentElement.dataset.id;
+            let tempObj = {[id] : ele};
+            btnRefsArray.current.push(tempObj);  
         }
     }
 
     const addData = ({id: i, state: s}) => {
-        skillData.current[i] = s;
-        // console.log(skillData)
+        let index = skillData.current.findIndex((obj) => {
+            return obj.hasOwnProperty(i);
+        });
+
+        if(index === -1) {
+            let tempObj = {[i]: s};
+            skillData.current.push(tempObj);
+        } else {
+            skillData.current[index][i] = s;
+        }
+    }
+
+    const handleDeleteSkill = (recievedId) => {
+        if(updatedSkillsArray.current.length > 1) {
+            let index = skillData.current.findIndex((obj) => {
+                return obj.hasOwnProperty(recievedId);
+            });
+    
+            if(index > -1)  {
+                skillData.current.splice(index, 1);
+            }
+    
+            btnRefsArray.current.find((obj,i) => {
+                if(obj.hasOwnProperty(recievedId)) {
+                    btnRefsArray.current.splice(i,1);
+                }
+                return obj.hasOwnProperty(recievedId);
+            });
+    
+            setSkillsArray(
+                updatedSkillsArray.current.filter((skill) => {
+                    return skill.props.id !== recievedId; 
+                })
+            );
+        }
     }
 
     const [skillsArray,setSkillsArray] = useState(
         [
             <Skill 
                 key={uuidv4()}
-                id={id.current}
-                ref={addRefToBtnRefsArray}
+                id={uuidv4()}
+                ref={storeBtnRefs}
                 addData={addData}
+                deleteCourse={handleDeleteSkill}
             />
         ]
     );
 
-    const handleAddCourse = () => {
-        id.current += 1;
+    const handleAddSkill = () => {
         setSkillsArray(
             skillsArray.concat(
                 <Skill 
                     key={uuidv4()}
-                    id={id.current}
-                    ref={addRefToBtnRefsArray}
+                    id={uuidv4()}
+                    ref={storeBtnRefs}
                     addData={addData}
+                    deleteCourse={handleDeleteSkill}
                 />
             )
         );
     }
 
     const handleSavingThisSection = () => {
-        btnRefsArray.current.forEach(btn => {
-            btn.click();
-        })
+        btnRefsArray.current.forEach((obj) => {
+            for(let key in obj)  {
+                obj[key].click();
+            }
+        });
 
         setSkillsSection(skillData.current)
     }
@@ -66,7 +109,7 @@ function SkillSection({ setSkillsSection }) {
             </button>
 
             <button
-                onClick={handleAddCourse}
+                onClick={handleAddSkill}
             >
                 Add Skill
             </button>

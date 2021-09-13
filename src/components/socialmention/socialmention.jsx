@@ -2,7 +2,7 @@ import { forwardRef, useState } from "react";
 import FormInput from "../forminput/form-input";
 import FormTextarea from "../formtextarea/form-textarea";
 
-const SocialMention = forwardRef(({addData,id}, ref) => {
+const SocialMention = forwardRef(({addData,id,deleteSocialMention}, ref) => {
     const [state,setState] = useState({
         nameofsocialmedia: "",
         links: "",
@@ -26,6 +26,7 @@ const SocialMention = forwardRef(({addData,id}, ref) => {
                         return e.key === "Enter" && e.preventDefault();
                     }
                 }
+                data-id={id}
             >
                 <FormInput
                     label={"Name of Social Media: "}
@@ -44,6 +45,13 @@ const SocialMention = forwardRef(({addData,id}, ref) => {
                     onChange={handleChange}
                     type="text"
                 />
+                
+                <button
+                    type="button"
+                    onClick={() => deleteSocialMention(id)}
+                >
+                    &#10005;
+                </button>
 
                 <button
                     style={

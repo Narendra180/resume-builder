@@ -1,56 +1,100 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import MiniProject from '../miniproject/miniproject';
 import { setMiniProjectSection } from '../../redux/miniproject/miniprojectaction';
 import { connect } from 'react-redux';
 
 function MiniProjectSection({ setMiniProjectSection }) {
 
-    let buttonRefsArray = useRef([]);
+    let btnRefsArray = useRef([]);
     const miniProjectData = useRef([]);
 
-    const addRefToArray = (ele) => {
-        if(ele && !buttonRefsArray.current.includes(ele)) {
-            buttonRefsArray.current.push(ele);
+    let updatedMiniProjectsArray = useRef([]);
+
+    useEffect(() => {
+        updatedMiniProjectsArray.current = miniProjectsArray;
+    })
+
+    const storeBtnRefs = (ele) => {
+        if(ele) {
+            let id = ele.parentElement.dataset.id;
+            let tempObj = {[id] : ele};
+            btnRefsArray.current.push(tempObj);            
         }
     }
 
     const addData = ({id: i, state: s}) => {
-        miniProjectData.current[i] = s;
-        console.log(miniProjectData.current)
+
+        let index = miniProjectData.current.findIndex((obj) => {
+            return obj.hasOwnProperty(i);
+        });
+
+        if(index === -1) {
+            let tempObj = {[i]: s};
+            miniProjectData.current.push(tempObj);
+        } else {
+            miniProjectData.current[index][i] = s;
+        }
+        
     }
 
-    let id = useRef(0);
+    const handleDeleteMiniProject = (recievedId) => {
+        if(updatedMiniProjectsArray.current.length > 1) {
+            let index = miniProjectData.current.findIndex((obj) => {
+                return obj.hasOwnProperty(recievedId);
+            });
+    
+            if(index > -1)  {
+                miniProjectData.current.splice(index, 1);
+            }
+    
+            btnRefsArray.current.find((obj,i) => {
+                if(obj.hasOwnProperty(recievedId)) {
+                    btnRefsArray.current.splice(i,1);
+                }
+                return obj.hasOwnProperty(recievedId);
+            });
+    
+            setMiniProjectsArray(
+                updatedMiniProjectsArray.current.filter((miniproject) => {
+                    return miniproject.props.id !== recievedId; 
+                })
+            );
+        }
+    }
 
     const [miniProjectsArray,setMiniProjectsArray] = useState(
         [
             <MiniProject 
                 key={uuidv4()}
                 addData={addData}
-                id={id.current}
-                ref={addRefToArray}
+                id={uuidv4()}
+                ref={storeBtnRefs}
+                deleteMiniProject={handleDeleteMiniProject}
             />
         ]
     );
 
     const handleAddProject = () => {
-        id.current += 1;
         setMiniProjectsArray(
             miniProjectsArray.concat(
                 <MiniProject 
                     key={uuidv4()}
                     addData={addData}
-                    id={id.current}
-                    ref={addRefToArray}
+                    id={uuidv4()}
+                    ref={storeBtnRefs}
+                    deleteMiniProject={handleDeleteMiniProject}
                 />
             )
         );
     }
 
     const handleSavingThisSection = () => {
-        buttonRefsArray.current.forEach(btn => {
-            btn.click();
-        })
+        btnRefsArray.current.forEach((obj) => {
+            for(let key in obj)  {
+                obj[key].click();
+            }
+        });
         setMiniProjectSection(miniProjectData.current)
     }
 
