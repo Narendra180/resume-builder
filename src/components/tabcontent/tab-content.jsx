@@ -10,38 +10,28 @@ function TabContent({ activeTab }) {
     return (
         <div className="tab-content">
             {
-                activeTab === 0?
-                <ProfileSection />:
-                <ProfileSection
-                    style={{display: "none"}} 
+                <ProfileSection 
+                    style={activeTab === 0?{}:{display:"none"}}
                 />
             }
             {
-                activeTab === 1?
-                <EducationSection />:
                 <EducationSection 
-                    style={{display: "none"}} 
-                />
+                    style={activeTab === 1?{}:{display:"none"}}
+                />                
             }
             {
-                activeTab === 2?
-                <SkillSection />:
                 <SkillSection 
-                    style={{display: "none"}} 
+                    style={activeTab === 2?{}:{display:"none"}}
                 />
             }
             {
-                activeTab === 3?
-                <MiniProjectSection />:
                 <MiniProjectSection 
-                    style={{display: "none"}} 
+                    style={activeTab === 3?{}:{display:"none"}}                
                 />
             }
             {
-                activeTab === 4?
-                <SocialMentionSection />:
                 <SocialMentionSection 
-                    style={{display: "none"}} 
+                    style={activeTab === 4?{}:{display:"none"}}                
                 />
             }
         </div>

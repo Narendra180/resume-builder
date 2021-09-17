@@ -4,7 +4,7 @@ import TabContent from "../tabcontent/tab-content";
 
 
 function TabComponent() {
-    const [activeTab, setActiveTab] = useState(-1);
+    const [activeTab, setActiveTab] = useState(0);
 
 	function handleClick(acti) {
 		setActiveTab(acti)

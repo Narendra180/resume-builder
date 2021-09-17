@@ -1,10 +1,10 @@
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
 
 function ResumePreview({profileData, educationData, skillsData, miniProjectData, socialMentionData}) {
     return(
         <div className="resume-preview">
-            <section className="profile-section">
+            {/* <section className="profile-section">
                 <h1>{profileData.firstname} {profileData.lastname}</h1>
                 <p><b>Phone no: </b>{profileData.phonenumber}</p>
                 <p style={{width: "150px"}}>{profileData.address}</p>
@@ -110,7 +110,7 @@ function ResumePreview({profileData, educationData, skillsData, miniProjectData,
                         })
                     }
                 </ul>
-            </section>
+            </section> */}
 
         </div>
     )
