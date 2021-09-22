@@ -121,7 +121,9 @@ function EducationSection({ setEducationSection, style }) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setEducationSection: educationData => dispatch(setEducationSection(educationData))
+        setEducationSection: educationData => {
+            dispatch(setEducationSection(educationData))
+        }
     }
 }
 

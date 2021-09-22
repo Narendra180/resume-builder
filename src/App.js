@@ -1,15 +1,19 @@
-// import { useState } from 'react';
-
 import TabComponent from './components/tabscomponent/tab-component';
-import ResumePreview from './components/resumepreview/resume-preview';
+import RP from './components/resume/rp';
+import Resume from './components/resume/resume';
+import ResumePreviewAndDownload from './components/resumepreviewanddownload/resumepreviewanddownload';
 import './App.css';
 
 function App() {
 	return (
 		<div className="app">
 			<TabComponent />
+			<ResumePreviewAndDownload />
 			
-			<ResumePreview />
+			<RP />
+
+			<Resume />
+
 		</div>
 	)
 }

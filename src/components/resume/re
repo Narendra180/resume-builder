@@ -11,7 +11,7 @@ function ResumePreview({
     
     return (
         <div>
-            <iframe src="" title="resume preview" frameBorder="0"></iframe>
+            
         </div>
     );
 

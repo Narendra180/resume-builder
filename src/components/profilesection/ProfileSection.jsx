@@ -104,7 +104,9 @@ function ProfileSection({setProfileSection, style}) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setProfileSection: (state) => dispatch(setProfileSection(state))
+        setProfileSection: (state) => {
+            dispatch(setProfileSection(state));
+        }
     }
 }
 

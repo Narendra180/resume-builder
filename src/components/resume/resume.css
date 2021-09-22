@@ -1,0 +1,51 @@
+.resume {
+    /* padding: 50px; */
+    /* border: 3px solid black; */
+    width: 630px;
+    height: 1017px;
+    font-family: sans-serif;
+    position: relative;
+}
+
+.resume h1,p {
+    margin: 0.4375rem 0;
+}
+
+.resume h1{
+    font-size: 1.125rem;
+    text-transform: uppercase;
+}
+
+.resume h2 {
+    font-size: 1.09rem;
+}
+
+.resume-preview p {
+    font-size: 1rem;
+}
+
+.resume .profile-section h1 {
+    text-transform: uppercase;
+}
+
+.profile-section img {
+    width: 100px;
+    height: 120px;
+    float: right;
+    margin-top: 7px;
+    /* margin-right: 20px; */
+}
+
+.profile-section::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.profile-section p.address {
+    width: 20px;
+}
+
+.social p {
+    width: 40px;
+}
