@@ -1,7 +1,9 @@
+import './tabbutton.css';
+
 function TabButton({tabNumber, btnContent, handleTabButtonClick}) {
     return (
         <button 
-            className="tab"
+            className="tab-btn"
             onClick={
                 () => handleTabButtonClick(tabNumber)
             }

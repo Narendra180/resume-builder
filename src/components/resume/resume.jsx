@@ -24,12 +24,14 @@ function Resume({profileData, educationData, skillsData, miniProjectData, social
                     pdf.save("generated");
                 }
             },
-            margin: [70,70,80,80]
+            margin: [60,60,65,65]
         });
     }
 
     return(
-        <div>
+        <div
+            style={{display: "none"}}
+        >
 
             <div>
                 <button type="button" onClick={generatePdf}>

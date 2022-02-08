@@ -1,6 +1,9 @@
 import { useState } from 'react'; 
 import { Document, Page } from 'react-pdf';
-
+import { pdfjs } from 'react-pdf';
+import './resumepreview.css';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/
+${pdfjs.version}/pdf.worker.min.js`;
 
 function ResumePreviewModal({generatedPdf, setDisplayResumePreviewModal}) {
 
@@ -27,7 +30,10 @@ function ResumePreviewModal({generatedPdf, setDisplayResumePreviewModal}) {
                     file={generatedPdf}
                     onLoadSuccess={onDocumentLoadSuccess}
                 >
-                    <Page pageNumber={pageNumber} />
+                    {/* <Page pageNumber={pageNumber} /> */}
+                    {Array.from(new Array(numPages), (el, index) => (
+                        <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+                    ))}
                 </Document>
                 <p>Page {pageNumber} of {numPages}</p>
             </div>

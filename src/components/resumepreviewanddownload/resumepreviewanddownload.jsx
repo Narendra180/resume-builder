@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import jsPDF from 'jspdf';
-import { pdfjs } from 'react-pdf';
 import ResumePreviewModal from '../resumepreview/resumepreview';
 import './resumepreviewanddownload.css'
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/
-${pdfjs.version}/pdf.worker.min.js`;
 
 function ResumePreviewAndDownload() {
 
@@ -27,10 +24,11 @@ function ResumePreviewAndDownload() {
                 let data = pdf.output('dataurlstring');
                 setState({...state, displayResumePreviewModal: true, generatedPdf: data});
             },
-            margin: [70,70,80,80]
+            // Adjust your margins here (top, right ,bottom, left)
+            margin: [70,70,70,70]
         });
 
-        setState({...state, displayResumePreviewModal: true});
+        // setState({...state, displayResumePreviewModal: true});
     }
 
     const setDisplayResumePreviewModal = () => {
@@ -54,7 +52,8 @@ function ResumePreviewAndDownload() {
                 callback: function (pdf) {
                     pdf.save("generated");
                 },
-                margin: [70,70,80,80]
+                // Adjust your margins here (top, right ,bottom, left)
+                margin: [70,70,70,70]
             }
         );
     }

@@ -1,4 +1,5 @@
 import TabButton from "../tabbutton/tabbutton";
+import './tabs-bar.css';
 
 function TabsBar({handleTabButtonClick}) {
     return (

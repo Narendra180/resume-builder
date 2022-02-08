@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TabsBar from "../tabsbar/tabs-bar";
 import TabContent from "../tabcontent/tab-content";
-
+import './tab-component.css';
 
 function TabComponent() {
     const [activeTab, setActiveTab] = useState(0);

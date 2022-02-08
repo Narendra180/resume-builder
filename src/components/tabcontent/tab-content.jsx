@@ -3,6 +3,7 @@ import EducationSection from "../educationsection/educationsection";
 import SkillSection from "../skillssection/SkillsSection";
 import MiniProjectSection from "../miniprojectsection/miniprojectsection";
 import SocialMentionSection from "../socialmentionsection/socialmentionsection";
+import './tab-content.css';
 
 function TabContent({ activeTab }) {
     // console.log(props.children)
