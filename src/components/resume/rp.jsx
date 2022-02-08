@@ -1,9 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
+import { useState } from 'react';
 import './resume.css';
 import ppic from './ppic.png';
 import jsPDF from 'jspdf';
 
 function Resume({profileData, educationData, skillsData, miniProjectData, socialMentionData}) {
+
+    let [pImg, setpImg] = useState("");
 
     const generatePdf = () => {
         let doc = new jsPDF(
@@ -17,7 +20,7 @@ function Resume({profileData, educationData, skillsData, miniProjectData, social
         );
 
         doc.html(
-            document.querySelector("#resume-div"), 
+            document.querySelector("#resume-divv"), 
             {
                 callback: function (pdf) {
                     pdf.save("generated");
@@ -27,11 +30,34 @@ function Resume({profileData, educationData, skillsData, miniProjectData, social
         );
     }
 
+    function compressImage() {
+        const oimg = new Image();
+        oimg.src = ppic;
+        oimg.onload = (e) => {
+            let canvas = document.createElement('canvas');
+            canvas.width = 100;
+            canvas.height = 120;
+            const context = canvas.getContext('2d');
+            context.drawImage(oimg, 0, 0, 100, 120);
+            let compressedImage = canvas.toDataURL("image/jpeg", 1);
+            setpImg(compressedImage);
+        }
+    }
+
     return(
         <div>
-            <div className="resume" id="resume-div">
+
+            <div>
+                <button type="button" onClick={generatePdf}>
+                    Download
+                </button>
+            </div>
+
+            
+            <div className="resume" id="resume-divv">
+                {compressImage()}
                 <section className="profile-section">
-                    {/* <img src={ppic} alt="profile" /> */}
+                    <img src={pImg} alt="profile" />
                     <h1>{"John"} {"Doe"}</h1>
                     <p><b>Phone no: </b>{"5555555555"}</p>
                     <p className="address">{"street, area, Hyderabad, Telangana."}</p>
@@ -117,7 +143,7 @@ function Resume({profileData, educationData, skillsData, miniProjectData, social
                                     Github
                                 </h3>
                                 <p>
-                                  https://www.github.com/repositories/group/ddhdhd/ddhd  
+                                  https://www.github.com/repositories/group/ddhdhd/ddhd    
                                 </p>
                             </div>
                         </li>
@@ -148,11 +174,7 @@ function Resume({profileData, educationData, skillsData, miniProjectData, social
                 
             </div>
             
-            <div>
-                <button type="button" onClick={generatePdf}>
-                    Download
-                </button>
-            </div>
+            
             
         </div>
     )

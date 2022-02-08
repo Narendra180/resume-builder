@@ -9,31 +9,22 @@ function TabContent({ activeTab }) {
 
     return (
         <div className="tab-content">
-            {
-                <ProfileSection 
-                    style={activeTab === 0?{}:{display:"none"}}
-                />
-            }
-            {
-                <EducationSection 
-                    style={activeTab === 1?{}:{display:"none"}}
-                />                
-            }
-            {
-                <SkillSection 
-                    style={activeTab === 2?{}:{display:"none"}}
-                />
-            }
-            {
-                <MiniProjectSection 
-                    style={activeTab === 3?{}:{display:"none"}}                
-                />
-            }
-            {
-                <SocialMentionSection 
-                    style={activeTab === 4?{}:{display:"none"}}                
-                />
-            }
+            <ProfileSection 
+                style={activeTab === 0?{}:{display:"none"}}
+            />
+            <EducationSection 
+                style={activeTab === 1?{}:{display:"none"}}
+            />                
+            <SkillSection 
+                style={activeTab === 2?{}:{display:"none"}}
+            />
+            <MiniProjectSection 
+                style={activeTab === 3?{}:{display:"none"}}                
+            />
+        
+            <SocialMentionSection 
+                style={activeTab === 4?{}:{display:"none"}}                
+            />
         </div>
     );
 }

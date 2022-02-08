@@ -1,9 +1,9 @@
-function TabButton({tabNumber, btnContent, handleClick}) {
+function TabButton({tabNumber, btnContent, handleTabButtonClick}) {
     return (
         <button 
             className="tab"
             onClick={
-                () => handleClick(tabNumber)
+                () => handleTabButtonClick(tabNumber)
             }
         >
             {btnContent}

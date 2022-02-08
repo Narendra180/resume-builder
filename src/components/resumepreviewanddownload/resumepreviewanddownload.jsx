@@ -1,28 +1,17 @@
-import { pdfjs } from 'react-pdf';
 import { useState } from 'react';
 import jsPDF from 'jspdf';
-import { Document, Page } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
+import ResumePreviewModal from '../resumepreview/resumepreview';
 import './resumepreviewanddownload.css'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/
 ${pdfjs.version}/pdf.worker.min.js`;
 
 function ResumePreviewAndDownload() {
 
-    const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
-
-    const onDocumentLoadSuccess = ({ numPages }) => {
-        setNumPages(numPages);
-    }
-
-    const [state,setState] = useState(
-        {
-            displayResumePreviewModal: false,
-            generatedPdf: ""
-        }
-    );
-
-
+    const [state, setState] = useState({
+        displayResumePreviewModal: false,
+        generatedPdf: ""
+    });
 
     const handlePreview = () => {
         let doc = new jsPDF(
@@ -36,13 +25,39 @@ function ResumePreviewAndDownload() {
         doc.html(document.querySelector("#resume-div"), {
             callback: function (pdf) {
                 let data = pdf.output('dataurlstring');
-                setState({...state, generatedPdf: data, displayResumePreviewModal: true});
+                setState({...state, displayResumePreviewModal: true, generatedPdf: data});
             },
             margin: [70,70,80,80]
         });
-    
+
+        setState({...state, displayResumePreviewModal: true});
     }
 
+    const setDisplayResumePreviewModal = () => {
+        setState({...state, displayResumePreviewModal: false});
+    }
+
+    const handleDownload = () => {
+        let doc = new jsPDF(
+            {
+                orientation: 'p',
+                unit: 'px',
+                format: 'a4',
+                hotfixes: ["px_scaling"],
+                putOnlyUsedFonts: true,
+            },
+        );
+
+        doc.html(
+            document.querySelector("#resume-div"), 
+            {
+                callback: function (pdf) {
+                    pdf.save("generated");
+                },
+                margin: [70,70,80,80]
+            }
+        );
+    }
 
     return (
         <div className="preview-download-buttons">
@@ -52,20 +67,22 @@ function ResumePreviewAndDownload() {
                 Resume preview
             </button>
 
-            <button>
-                Resume Download
+            <button onClick={handleDownload}>
+                Download
             </button>
             
-            <div>
-                <Document
-                    file={state.generatedPdf}
-                    onLoadSuccess={onDocumentLoadSuccess}
-                >
-                    <Page pageNumber={pageNumber} />
-                </Document>
-                <p>Page {pageNumber} of {numPages}</p>
-                </div>
-            </div>  
+            {
+                state.displayResumePreviewModal
+                ?
+                <ResumePreviewModal 
+                    generatedPdf={state.generatedPdf}
+                    setDisplayResumePreviewModal={setDisplayResumePreviewModal}
+                />
+                :
+                null
+            }
+
+        </div>  
     );
 }
 

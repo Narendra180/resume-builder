@@ -16,6 +16,8 @@ function Resume({profileData, educationData, skillsData, miniProjectData, social
         );
         doc.html(document.querySelector("#resume-div"), {
             callback: function (pdf) {
+                console.log(pdf.internal);
+                
                 if(profileData.firstname) {
                     pdf.save(profileData.firstname);
                 } else {

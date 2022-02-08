@@ -11,10 +11,10 @@ function TabComponent() {
 	}
 
 	return (
-		<div>
+		<div className="tabcomponent-container">
 			{/* {console.log(activeTab)} */}
 
-			<TabsBar handleClick={handleClick}/>
+			<TabsBar handleTabButtonClick={handleClick}/>
 
 			<TabContent activeTab={activeTab}>
 			</TabContent>

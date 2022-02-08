@@ -8,9 +8,10 @@ function App() {
 	return (
 		<div className="app">
 			<TabComponent />
+
 			<ResumePreviewAndDownload />
 			
-			<RP />
+			{/* <RP /> */}
 
 			<Resume />
 

@@ -24,13 +24,30 @@ function ProfileSection({setProfileSection, style}) {
     }
 
     const handlImageChange = (event) => {
-        if(event.target.files[0]) {
-            const fileReader = new FileReader();
-            fileReader.onload = (e) => {
-                setState({...state, profilePicture: e.target.result});
-            };
-            fileReader.readAsDataURL(event.target.files[0]);
-        }   
+        // if(event.target.files[0]) {
+        //     const fileReader = new FileReader();
+        //     fileReader.onload = (e) => {
+        //         setState({...state, profilePicture: e.target.result});
+        //     };
+        //     fileReader.readAsDataURL(event.target.files[0]);
+        // }   
+
+        const file = event.target.files[0];
+        if(file) {
+            const blobUrl = URL.createObjectURL(file);
+            const originalImg = new Image();
+            originalImg.src = blobUrl;
+            originalImg.onload = (e) => {
+                URL.revokeObjectURL(blobUrl);
+                let canvas = document.createElement('canvas');
+                canvas.width = 100;
+                canvas.height = 120;
+                const context = canvas.getContext('2d');
+                context.drawImage(originalImg, 0, 0, 100, 120);
+                let compressedImage = canvas.toDataURL("image/jpeg", 1);
+                setState({...state, profilePicture: compressedImage});
+            }
+        }
     }
 
     // console.log(state);

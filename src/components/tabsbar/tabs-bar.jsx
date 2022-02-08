@@ -1,34 +1,34 @@
 import TabButton from "../tabbutton/tabbutton";
 
-function TabsBar({handleClick}) {
+function TabsBar({handleTabButtonClick}) {
     return (
-        <div>
+        <div className="tabs-bar">
             <TabButton 
-                handleClick={handleClick}
+                handleTabButtonClick={handleTabButtonClick}
                 btnContent={"Profile"}
                 tabNumber={0}
             />
             
             <TabButton 
-                handleClick={handleClick}
+                handleTabButtonClick={handleTabButtonClick}
                 btnContent={"Education"}
                 tabNumber={1}
             />
 
             <TabButton 
-                handleClick={handleClick}
+                handleTabButtonClick={handleTabButtonClick}
                 btnContent={"Skills"}
                 tabNumber={2}
             />
 
             <TabButton 
-                handleClick={handleClick}
+                handleTabButtonClick={handleTabButtonClick}
                 btnContent={"Projects"}
                 tabNumber={3}
             />
 
             <TabButton 
-                handleClick={handleClick}
+                handleTabButtonClick={handleTabButtonClick}
                 btnContent={"Social Media"}
                 tabNumber={4}
             />
