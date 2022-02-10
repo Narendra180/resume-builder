@@ -1,0 +1,147 @@
+.input {
+    position: relative;
+    display: inline-block;
+}
+
+.input input{
+   font-size: 1rem;
+   color: rgb(36, 36, 36);
+   padding: 10px;
+   padding-left: 14px;
+   border: 0;
+   outline: 0;
+   border: 1px solid rgb(196, 196, 196);
+   border: 0;
+   border-radius: 5px;
+   /* margin: 5px; */
+   margin: 0;
+   width: 219px;
+   height: 43px;
+   position: relative;
+   z-index: 1;
+   background-color: transparent;
+}
+
+/* .input input:hover {
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.input input:focus {
+    border: 2px solid rgb(48, 120, 255);
+} */
+
+.focused .legend {
+    /* visibility: visible; */
+    width: auto;
+    height: auto;
+}
+
+.hovered .fs {
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.focused .fs {
+    top: -12px;
+    border: 2px solid rgb(48, 120, 255);
+}
+
+.focused .fs-label {
+    top: -12px;
+    left: 14px;
+    font-size: 14px;
+}
+
+.fs {
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid rgb(196, 196, 196);
+}
+
+
+.legend {
+    visibility: hidden;
+    /* width: 0;
+    height: 0;
+    padding: 0; */
+    width: 0;
+    height: 0;
+    padding: 0;
+}
+
+.fs-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.vpindiv .fs-label {
+    top: -12px;
+    left: 14px;
+    font-size: 14px;
+}
+
+.vpindiv .fs {
+    top: -12px;
+}
+
+.vpindiv .legend {
+    /* visibility: visible; */
+    width: auto;
+    height: auto;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.box p {
+    margin: 0;
+}
+
+.input-con {
+    position: relative;
+    margin: 10px 0;
+    background-color: inherit;
+}
+
+.input-con input {
+    width: 219px;
+    height: 43px;
+    padding: 10px;
+    padding-left: 13px;
+    font-size: 1rem;
+    border-radius: 6px;
+    outline: 0;
+    background-color: transparent;
+    border: 1px solid rgb(196, 196, 196);
+}
+
+.input-con .i-label {
+    position: absolute;
+    /* visibility: hidden; */
+    background-color: inherit;
+    top: -13.5px;
+    left: 10px;
+    padding: 0 4px;
+    transition: all 0.2s ease;
+}
+
+.input-con input:hover {
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.input-con input:focus {
+    border: 2px solid rgb(48, 120, 255);
+    padding-top: 9px;
+    padding-left: 12px;
+}

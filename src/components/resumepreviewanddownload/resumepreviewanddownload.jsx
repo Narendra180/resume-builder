@@ -59,17 +59,26 @@ function ResumePreviewAndDownload() {
     }
 
     return (
-        <div className="preview-download-buttons">
-            <button 
-                onClick={handlePreview}
-            >
-                Resume preview
-            </button>
+        <div className="preview-download">
 
-            <button onClick={handleDownload}>
-                Download
-            </button>
-            
+            <div
+                className="preview-download-btns"
+            >
+                <button 
+                    onClick={handlePreview}
+                    className="preview-btn btn"
+                >
+                    Resume preview
+                </button>
+
+                <button 
+                    onClick={handleDownload}
+                    className="download-btn btn"
+                >
+                    Download
+                </button>
+            </div>
+
             {
                 state.displayResumePreviewModal
                 ?

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import FormInput from "../forminput/form-input";
 import FormTextarea from "../formtextarea/form-textarea";
 import { connect } from "react-redux";
 import { setProfileSection } from '../../redux/profile/profileaction';
+import './ProfileSection.css';
 
 function ProfileSection({setProfileSection, style}) {
     const [state,setState] = useState({
@@ -12,6 +13,8 @@ function ProfileSection({setProfileSection, style}) {
         address: "",
         profilePicture: ""
     });
+
+    const textInput = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -50,10 +53,69 @@ function ProfileSection({setProfileSection, style}) {
         }
     }
 
+    const handleFocus = () => {
+        textInput.current.classList.add("focused");
+    }
+
+    const handleBlur = () => {
+        textInput.current.classList.remove("focused");
+        let ie = document.querySelector("#fn");
+        if(ie.value.length > 0) {
+            textInput.current.classList.add("vpindiv");
+        } else {
+            textInput.current.classList.remove("vpindiv");
+        }
+        // console.log(ie.value.length);
+    }
+
+    const handleHover = () => {
+        textInput.current.classList.add("hovered");
+    }
+
+    const handleMouseOut = () => {
+        textInput.current.classList.remove("hovered");
+    }
+
     // console.log(state);
     return (
         <div style={style}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} style={{backgroundColor: "#deffde"}}>
+
+                <div
+                    className="input "                    
+                    ref={textInput}
+                >
+                    <label className="fs-label" htmlFor="fs">First Name</label>                
+                    <input                   
+                        id="fn"      
+                        type="text"                        
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        onMouseOver={handleHover}
+                        onMouseOutCapture={handleMouseOut}
+                    />
+                    <fieldset
+                        className="fs"
+                    >
+                        <legend className="legend">First Name</legend>
+                    </fieldset>
+                </div>
+
+                <div
+                    className="box"
+                >
+                    <p>Hello</p>
+                </div>
+
+                <div
+                    className="input-con"                    
+                >
+                    <label className="i-label">First Name</label>
+                    <input
+                        type="text"
+                    />
+                </div>
+
                 <FormInput
                     label={"First Name: "}
                     id="firstname" 
