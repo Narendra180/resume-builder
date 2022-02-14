@@ -1,8 +1,9 @@
-import { useState,useRef } from "react";
+import { useState,useRef,useEffect } from "react";
 import FormInput from "../forminput/form-input";
 import FormTextarea from "../formtextarea/form-textarea";
 import { connect } from "react-redux";
 import { setProfileSection } from '../../redux/profile/profileaction';
+import CustomInput from "../custominput/custom-input";
 import './ProfileSection.css';
 
 function ProfileSection({setProfileSection, style}) {
@@ -13,6 +14,8 @@ function ProfileSection({setProfileSection, style}) {
         address: "",
         profilePicture: ""
     });
+
+    useEffect(() => console.log(state));
 
     const textInput = useRef(null);
 
@@ -115,6 +118,13 @@ function ProfileSection({setProfileSection, style}) {
                         type="text"
                     />
                 </div>
+
+                <CustomInput />
+                <CustomInput />
+                <CustomInput />
+                <CustomInput />
+
+
 
                 <FormInput
                     label={"First Name: "}

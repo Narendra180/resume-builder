@@ -111,7 +111,7 @@
 .input-con {
     position: relative;
     margin: 10px 0;
-    background-color: inherit;
+    /* background-color: inherit; */
 }
 
 .input-con input {

@@ -1,0 +1,94 @@
+.custom-input-con {
+    position: relative;
+    display: inline-block;
+    margin: 11px 0;
+}
+
+.custom-input-con .ci-input{
+    font-size: 1rem;
+    color: rgb(36, 36, 36);
+    padding: 10px;
+    padding-left: 14px;
+    border: 0;
+    outline: 0;
+    border: 1px solid rgb(196, 196, 196);
+    border: 0;
+    border-radius: 5px;
+    /* margin: 5px; */
+    margin: 0;
+    width: 219px;
+    height: 43px;
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+ }
+
+
+ .ci-label {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+ .ci-fieldset {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid rgb(196, 196, 196);
+}
+
+.custom-input-con .ci-fieldset .ci-legend {
+    visibility: hidden;
+    /* width: 0;
+    height: 0;
+    padding: 0; */
+    width: 0;
+    height: 0;
+    padding: 0;
+}
+
+.custom-input-con.focused .ci-legend {
+    /* visibility: visible; */
+    width: auto;
+    height: auto;
+    padding: 0 2px;
+}
+
+.custom-input-con.hovered .ci-fieldset {
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.custom-input-con.focused .ci-fieldset{
+    top: -12px;
+    border: 2px solid rgb(48, 120, 255);
+}
+
+.custom-input-con.focused .ci-label {
+    top: -12px;
+    left: 16px;
+    font-size: 14px;
+}
+
+.custom-input-con.value-present .ci-label {
+    top: -12px;
+    left: 16px;
+    font-size: 14px;
+}
+
+.custom-input-con.value-present .ci-fieldset {
+    top: -12px;
+}
+
+.custom-input-con.value-present .ci-legend {
+    /* visibility: visible; */
+    width: auto;
+    height: auto;
+    padding: 0 2px;
+}
