@@ -1,10 +1,12 @@
 .custom-input-con {
     position: relative;
-    display: inline-block;
+    /* display: inline-block; */
     margin: 11px 0;
 }
 
-.custom-input-con .ci-input{
+.custom-input-con .ci-input {
+    position: relative;
+    z-index: 1;
     font-size: 1rem;
     color: rgb(36, 36, 36);
     padding: 10px;
@@ -16,12 +18,12 @@
     border-radius: 5px;
     /* margin: 5px; */
     margin: 0;
-    width: 219px;
+    /* width: 219px; */
+    width: 100%;
     height: 43px;
-    position: relative;
-    z-index: 1;
-    background-color: transparent;
- }
+    background-color: transparent !important;
+    background-clip: content-box;
+}
 
 
  .ci-label {
@@ -59,6 +61,7 @@
     width: auto;
     height: auto;
     padding: 0 2px;
+    font-size: 14px;
 }
 
 .custom-input-con.hovered .ci-fieldset {
@@ -72,13 +75,13 @@
 
 .custom-input-con.focused .ci-label {
     top: -12px;
-    left: 16px;
+    left: 14px;
     font-size: 14px;
 }
 
 .custom-input-con.value-present .ci-label {
     top: -12px;
-    left: 16px;
+    left: 13px;
     font-size: 14px;
 }
 
@@ -91,4 +94,5 @@
     width: auto;
     height: auto;
     padding: 0 2px;
+    font-size: 14px;
 }

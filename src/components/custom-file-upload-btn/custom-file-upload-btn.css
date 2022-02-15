@@ -1,0 +1,30 @@
+.custom-file-upload-btn-con {
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
+    padding: 10px;
+    overflow-x: auto;
+    display: flex;
+    align-items: center;
+}
+
+.custom-file-upload-btn-con .selected-file-name-text {
+    margin-left: 6px;
+    font-size: 14px;
+}
+
+.custom-file-upload-btn-con:hover {
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.custom-file-upload-btn-con:focus {
+    border: 2px solid rgb(48, 120, 255);
+    padding: 9px;
+}
+
+.custom-file-upload-btn-con .upload-btn-label {
+    background-color: rgb(70, 36, 194);
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@ import FormTextarea from "../formtextarea/form-textarea";
 import { connect } from "react-redux";
 import { setProfileSection } from '../../redux/profile/profileaction';
 import CustomInput from "../custominput/custom-input";
+import CustomFileUploadBtn from "../custom-file-upload-btn/custom-file-upload-btn";
 import './ProfileSection.css';
 
 function ProfileSection({setProfileSection, style}) {
@@ -17,7 +18,6 @@ function ProfileSection({setProfileSection, style}) {
 
     useEffect(() => console.log(state));
 
-    const textInput = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +25,12 @@ function ProfileSection({setProfileSection, style}) {
         setProfileSection(state);
     }
 
-    const handleChange = ({target: {name, value}}) => {
+    const handleChange = ({target: {name, value}, target}) => {
+        if(value.length > 0) {
+            target.parentNode.classList.add("value-present");
+        } else {
+            target.parentNode.classList.remove("value-present");
+        }
         setState({...state, [name]: value})
     }
 
@@ -37,6 +42,8 @@ function ProfileSection({setProfileSection, style}) {
         //     };
         //     fileReader.readAsDataURL(event.target.files[0]);
         // }   
+
+        let customFileUploadBtnCon = event.nativeEvent.target.parentNode.parentNode;
 
         const file = event.target.files[0];
         if(file) {
@@ -53,124 +60,69 @@ function ProfileSection({setProfileSection, style}) {
                 let compressedImage = canvas.toDataURL("image/jpeg", 1);
                 setState({...state, profilePicture: compressedImage});
             }
+
+            if(customFileUploadBtnCon.childElementCount > 1) {
+                let alreadyPresentNewDivNode = customFileUploadBtnCon.querySelector(".selected-file-name-text");
+                alreadyPresentNewDivNode.textContent = file.name;
+            } else {
+                let newDivNode = document.createElement("div");
+                newDivNode.classList.add("selected-file-name-text");
+                newDivNode.textContent = file.name;
+                customFileUploadBtnCon.appendChild(newDivNode);
+            }
         }
     }
 
-    const handleFocus = () => {
-        textInput.current.classList.add("focused");
-    }
-
-    const handleBlur = () => {
-        textInput.current.classList.remove("focused");
-        let ie = document.querySelector("#fn");
-        if(ie.value.length > 0) {
-            textInput.current.classList.add("vpindiv");
-        } else {
-            textInput.current.classList.remove("vpindiv");
-        }
-        // console.log(ie.value.length);
-    }
-
-    const handleHover = () => {
-        textInput.current.classList.add("hovered");
-    }
-
-    const handleMouseOut = () => {
-        textInput.current.classList.remove("hovered");
-    }
-
-    // console.log(state);
     return (
         <div style={style}>
-            <form onSubmit={handleSubmit} style={{backgroundColor: "#deffde"}}>
+            <form onSubmit={handleSubmit} style={{backgroundColor: "#deffde"}}>        
 
-                <div
-                    className="input "                    
-                    ref={textInput}
-                >
-                    <label className="fs-label" htmlFor="fs">First Name</label>                
-                    <input                   
-                        id="fn"      
-                        type="text"                        
-                        onFocus={handleFocus}
-                        onBlur={handleBlur}
-                        onMouseOver={handleHover}
-                        onMouseOutCapture={handleMouseOut}
-                    />
-                    <fieldset
-                        className="fs"
-                    >
-                        <legend className="legend">First Name</legend>
-                    </fieldset>
-                </div>
-
-                <div
-                    className="box"
-                >
-                    <p>Hello</p>
-                </div>
-
-                <div
-                    className="input-con"                    
-                >
-                    <label className="i-label">First Name</label>
-                    <input
-                        type="text"
-                    />
-                </div>
-
-                <CustomInput />
-                <CustomInput />
-                <CustomInput />
-                <CustomInput />
-
-
-
-                <FormInput
-                    label={"First Name: "}
-                    id="firstname" 
+                <CustomInput
+                    label={"First Name"}
                     name="firstname"
                     value={state.firstname}
                     onChange={handleChange}
                     type="text"
-                    placeholder="Enter Your first name"
                     required
                 />
 
-                <FormInput
-                    label={"Last Name: "}
-                    id="lastname" 
+                <CustomInput
+                    label={"Last Name"}
                     name="lastname"
                     value={state.lastname}
                     onChange={handleChange}
                     type="text"
-                    placeholder="Enter your last name"
                     required
                 />
 
-                <FormInput
-                    label={"Phone Number: "}
-                    id="phonenumber"
+                <CustomInput
+                    label={"Phone Number"}
                     name="phonenumber"
                     value={state.phonenumber}
                     onChange={handleChange}
                     pattern="\d*"
                     type="tel"
                     maxLength="10"
-                    placeholder="Enter your phone number"
                     title="only numbers allowed"
                     required
                 />
 
-                <FormInput
-                    label="Profile Picture: "
-                    id="profilepicture"
+                <CustomFileUploadBtn 
+                    onChange={handlImageChange}
+                    name="profilepicture"
+                    onChange={handlImageChange}
+                    accept="image/*"
+                    required
+                />
+
+                {/* <FormInput
+                    label="Profile Picture"
                     name="profilepicture"
                     type="file"
                     onChange={handlImageChange}
                     accept="image/*"
                     required
-                />
+                /> */}
 
 
                 <FormTextarea
