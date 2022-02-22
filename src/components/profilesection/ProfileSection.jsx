@@ -1,6 +1,6 @@
 import { useState,useRef,useEffect } from "react";
-import FormInput from "../forminput/form-input";
-import FormTextarea from "../formtextarea/form-textarea";
+// import FormInput from "../forminput/form-input";
+// import FormTextarea from "../formtextarea/form-textarea";
 import { connect } from "react-redux";
 import { setProfileSection } from '../../redux/profile/profileaction';
 import CustomInput from "../custominput/custom-input";
@@ -16,13 +16,91 @@ function ProfileSection({setProfileSection, style}) {
         profilePicture: ""
     });
 
-    useEffect(() => console.log(state));
+
+    const [warningStatesOfCustomInputs,setwarningStatesOfCustomInputs] = useState({
+        firstnameWM: "",
+        lastnameWM: "",
+        phonenumberWM: "",
+        addressWM: "",
+        profilePictureWM: ""
+    });
+
+    let changedStateValueKey = useRef("");
+
+    useEffect(() => {
+        console.log(state);
+        console.log(changedStateValueKey);
+        console.log("warnings state", warningStatesOfCustomInputs);
+
+        if(state[changedStateValueKey.current]) {
+            setwarningStatesOfCustomInputs({
+                ...warningStatesOfCustomInputs, 
+                [changedStateValueKey.current+"WM"]: "" 
+            });
+        }
+
+        if(changedStateValueKey.current === "phonenumber") {
+            if(/^[0-9]{10}$/.test(state["phonenumber"])) {
+                setwarningStatesOfCustomInputs({
+                    ...warningStatesOfCustomInputs, 
+                    "phonenumberWM": "" 
+                });
+            } else {
+                setwarningStatesOfCustomInputs({
+                    ...warningStatesOfCustomInputs, 
+                    "phonenumberWM": "Mobile number is in incorrect format" 
+                });
+            }
+            // setwarningStatesOfCustomInputs({
+            //     ...warningStatesOfCustomInputs, 
+            //     [changedStateValueKey.current+"WM"]: "" 
+            // });
+        }
+
+        // regex for email /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test("n@gmail.com")     
+
+        // if(changedStateValueKey.current === "firstname") {
+        //     let regexTestResult = /^[a-zA-Z]{4}$/.test(state[changedStateValueKey.current]);
+        //     console.log(regexTestResult);
+        // }
+    }, [state]);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log(e.target);
-        setProfileSection(state);
+        // setProfileSection(state);
+        console.log(state,warningStatesOfCustomInputs);
+
+        // check if any inputs are empty and update warnings state of custom inputs.
+        let updatedWarningsState = {...warningStatesOfCustomInputs};
+        for(let key in state) {
+            if(!state[key]) {
+                console.log(key);
+                updatedWarningsState[key+"WM"] = "Please fill this required field";
+            } else if(!state[key] && key !== "phonenumber") {
+                updatedWarningsState[key+"WM"] = "";
+            }
+        }
+
+        let saveSection = false;
+
+        for(let key in updatedWarningsState) {
+            if(!updatedWarningsState[key]) {
+                saveSection = true;
+            } else {
+                saveSection = false;
+                break;
+            }
+        }
+
+        console.log(saveSection)
+
+        if(saveSection) {
+            setProfileSection(state);
+        } else {
+            setwarningStatesOfCustomInputs(updatedWarningsState);
+        }
     }
 
     const handleChange = ({target: {name, value}, target}) => {
@@ -31,7 +109,9 @@ function ProfileSection({setProfileSection, style}) {
         } else {
             target.parentNode.classList.remove("value-present");
         }
-        setState({...state, [name]: value})
+        changedStateValueKey.current = name;
+        setState({...state, [name]: value});
+        // console.log(state, "state log from onchange method");
     }
 
     const handlImageChange = (event) => {
@@ -59,6 +139,7 @@ function ProfileSection({setProfileSection, style}) {
                 context.drawImage(originalImg, 0, 0, 100, 120);
                 let compressedImage = canvas.toDataURL("image/jpeg", 1);
                 setState({...state, profilePicture: compressedImage});
+                changedStateValueKey.current = "profilePicture";
             }
 
             if(customFileUploadBtnCon.childElementCount > 1) {
@@ -75,7 +156,12 @@ function ProfileSection({setProfileSection, style}) {
 
     return (
         <div style={style}>
-            <form onSubmit={handleSubmit} style={{backgroundColor: "#deffde"}}>        
+            <form
+                id="profile-section-form"
+                onSubmit={handleSubmit} 
+                style={{backgroundColor: "#deffde"}}
+                noValidate
+            >        
 
                 <CustomInput
                     label={"First Name"}
@@ -84,6 +170,7 @@ function ProfileSection({setProfileSection, style}) {
                     onChange={handleChange}
                     type="text"
                     required
+                    warning={warningStatesOfCustomInputs["firstnameWM"]}
                 />
 
                 <CustomInput
@@ -93,6 +180,7 @@ function ProfileSection({setProfileSection, style}) {
                     onChange={handleChange}
                     type="text"
                     required
+                    warning={warningStatesOfCustomInputs["lastnameWM"]}
                 />
 
                 <CustomInput
@@ -105,34 +193,27 @@ function ProfileSection({setProfileSection, style}) {
                     maxLength="10"
                     title="only numbers allowed"
                     required
+                    warning={warningStatesOfCustomInputs["phonenumberWM"]}
                 />
 
                 <CustomFileUploadBtn 
                     onChange={handlImageChange}
                     name="profilepicture"
-                    onChange={handlImageChange}
                     accept="image/*"
+                    btnText={"Choose Profile Picture"}
                     required
+                    warning={warningStatesOfCustomInputs["profilePictureWM"]}
                 />
 
-                {/* <FormInput
-                    label="Profile Picture"
-                    name="profilepicture"
-                    type="file"
-                    onChange={handlImageChange}
-                    accept="image/*"
-                    required
-                /> */}
-
-
-                <FormTextarea
-                    label="Address: "
-                    id="address"
+                {/* TA means textarea*/}
+                <CustomInput
+                    label={"Address"}
                     name="address"
                     value={state.address}
                     onChange={handleChange}
-                    placeholder="Enter your address"
                     required
+                    component={"TA"}
+                    warning={warningStatesOfCustomInputs["addressWM"]}
                 />
 
                 <button type="submit">

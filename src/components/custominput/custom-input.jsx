@@ -2,7 +2,7 @@ import { useState,useEffect,useRef } from "react";
 import { newId } from "./label-ids";
 import './custom-input.css';
 
-function CustomInput({label, ...otherProps}) {
+function CustomInput({label,component,warning, ...otherProps}) {
     const [id,setId] = useState(null);
 
     const customInputContainer = useRef(null);
@@ -38,32 +38,59 @@ function CustomInput({label, ...otherProps}) {
 
     return (
         <div
-            className="custom-input-con"
-            ref={customInputContainer}
+            className="custom-input-con-parent-div"
         >
-            <label 
-                className="ci-label" 
-                htmlFor={"ci"+id}
+            <div
+                className={`custom-input-con ${component}`}
+                ref={customInputContainer}
             >
-                {label?label:"label"}
-            </label>
-            <input
-                className="ci-input" 
-                id={"ci"+id}
-                {...otherProps}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onMouseOver={handleHover}
-                onMouseOutCapture={handleMouseOut}
-            />
+                <label 
+                    className="ci-label" 
+                    htmlFor={"ci"+id}
+                >
+                    {label?label:"label"}
+                </label>
 
-            <fieldset
-                className="ci-fieldset"
-            >
-                <legend className="ci-legend">{label?label:"label"}</legend>
-            </fieldset>
+                {
+                    component !== "TA"
+                    ?
+                    <input
+                        className="ci-input" 
+                        id={"ci"+id}
+                        {...otherProps}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        onMouseOver={handleHover}
+                        onMouseOutCapture={handleMouseOut}
+                    />
+                    :
+                    <textarea 
+                        className="ci-input" 
+                        id={"ci"+id}
+                        {...otherProps}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        onMouseOver={handleHover}
+                        onMouseOutCapture={handleMouseOut}
+                    />
+                }
+
+                <fieldset
+                    className="ci-fieldset"
+                >
+                    <legend className="ci-legend">{label?label:"label"}</legend>
+                </fieldset>
+            </div>
             
+            {
+                warning
+                ?
+                <div className="warning-msg">{warning}</div>
+                :
+                ""
+            }
         </div>
+        
     )
         
 }

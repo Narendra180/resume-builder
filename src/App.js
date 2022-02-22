@@ -1,5 +1,5 @@
 import TabComponent from './components/tabscomponent/tab-component';
-import RP from './components/resume/rp';
+// import RP from './components/resume/rp';
 import Resume from './components/resume/resume';
 import ResumePreviewAndDownload from './components/resumepreviewanddownload/resumepreviewanddownload';
 // import TestComp from './comp';

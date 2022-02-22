@@ -1,3 +1,13 @@
+.custom-file-upload-btn-con-prent-div {
+    margin: 10px 0;
+}
+
+.custom-file-upload-btn-con-prent-div .warning-msg {
+    color: red;
+    font-size: 12px;
+    padding-left: 14px;
+}
+
 .custom-file-upload-btn-con {
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
@@ -27,4 +37,10 @@
     border-radius: 5px;
     color: white;
     cursor: pointer;
+}
+
+.custom-file-upload-btn-con .input-file {
+    /* opacity: 0; */
+    width: 0;
+    height: 0;
 }
