@@ -32,7 +32,7 @@ function ProfileSection({setProfileSection, style}) {
         console.log(changedStateValueKey);
         console.log("warnings state", warningStatesOfCustomInputs);
 
-        if(state[changedStateValueKey.current]) {
+        if(state[changedStateValueKey.current] && changedStateValueKey.current+"WM") {
             setwarningStatesOfCustomInputs({
                 ...warningStatesOfCustomInputs, 
                 [changedStateValueKey.current+"WM"]: "" 
@@ -112,6 +112,7 @@ function ProfileSection({setProfileSection, style}) {
         changedStateValueKey.current = name;
         setState({...state, [name]: value});
         // console.log(state, "state log from onchange method");
+        console.log(value, "valueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
     }
 
     const handlImageChange = (event) => {
