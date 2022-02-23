@@ -9,7 +9,7 @@ function CustomInput({label,component,warning, ...otherProps}) {
 
     useEffect(() => {
         setId(newId());
-        console.log(customInputContainer)
+        // console.log(customInputContainer)
     }, []);
 
     const handleFocus = () => {
@@ -24,7 +24,7 @@ function CustomInput({label,component,warning, ...otherProps}) {
         } else {
             customInputContainer.current.classList.remove("value-present");
         }
-        console.log(ie.value.length);
+        // console.log(ie.value.length);
     }
 
     const handleHover = () => {
