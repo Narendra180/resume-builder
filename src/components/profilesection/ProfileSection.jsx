@@ -29,74 +29,52 @@ function ProfileSection({setProfileSection, style}) {
     let isStateChanged = useRef("");
 
     useEffect(() => {
-        console.log(state);
+        // console.log(state);
         // console.log(changedStateValueKey);
-        console.log("warnings state", warningStatesOfCustomInputs);
+        // console.log("warnings state", warningStatesOfCustomInputs);
+
+        const changeWarningMessagesState = (changedInputProperty, messageToBeSet) => {
+            setwarningStatesOfCustomInputs({
+                ...warningStatesOfCustomInputs, 
+                [changedInputProperty]: messageToBeSet 
+            });
+            isStateChanged.current = false;
+        }
 
         switch(changedStateValueKey.current) {
             case "":
                 break;
             case "phonenumber":
                 console.log("phonenumber case")
-                if(/^[0-9]{10}$/.test(state["phonenumber"]) && isStateChanged.current) {
-                    setwarningStatesOfCustomInputs({
-                        ...warningStatesOfCustomInputs, 
-                        "phonenumberWM": "" 
-                    });
-                    isStateChanged.current = false;
+                if(/^[0-9]{10}$/.test(state["phonenumber"]) && isStateChanged.current) {                    
+                    changeWarningMessagesState("phonenumberWM", "");
                 } else {
                     if(isStateChanged.current) {
-                        setwarningStatesOfCustomInputs({
-                            ...warningStatesOfCustomInputs, 
-                            "phonenumberWM": "Mobile number is in incorrect format" 
-                        });
-                        isStateChanged.current = false;
+                        changeWarningMessagesState("phonenumberWM", "Mobile number is in incorrect format");
                     }                    
                 }
             break;
             default:
                 if(state[changedStateValueKey.current] && isStateChanged.current) {
-                    setwarningStatesOfCustomInputs({
-                        ...warningStatesOfCustomInputs, 
-                        [changedStateValueKey.current+"WM"]: "" 
-                    });
-                    isStateChanged.current = false;
+                    changeWarningMessagesState(changedStateValueKey.current+"WM", "");
                 } else if(!state[changedStateValueKey.current] && isStateChanged.current){
-                    setwarningStatesOfCustomInputs({
-                        ...warningStatesOfCustomInputs, 
-                        [changedStateValueKey.current+"WM"]: "Please fill this required field" 
-                    });
-                    isStateChanged.current = false;
+                    changeWarningMessagesState(changedStateValueKey.current+"WM", "Please fill this required field");
                 }
         }
 
-        // regex for email /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test("n@gmail.com")     
-
-        // if(changedStateValueKey.current === "firstname") {
-        //     let regexTestResult = /^[a-zA-Z]{4}$/.test(state[changedStateValueKey.current]);
-        //     console.log(regexTestResult);
-        // }
     }, [state, warningStatesOfCustomInputs]);
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(e.target);
-        // setProfileSection(state);
-        // console.log(state,warningStatesOfCustomInputs);
 
-        // check if any inputs are empty and update warnings state of custom inputs.
         let updatedWarningsState = {...warningStatesOfCustomInputs};
         for(let key in state) {
             if(!state[key]) {
-                // console.log(key);
                 updatedWarningsState[key + "WM"] = "Please fill this required field";
             } else if(!state[key] && key !== "phonenumber") {
                 updatedWarningsState[key + "WM"] = "";
             }
-            // console.log(key)
         }
-        // console.log(updatedWarningsState)
 
         let saveSection = false;
 
@@ -109,7 +87,7 @@ function ProfileSection({setProfileSection, style}) {
             }
         }
 
-        console.log(saveSection);
+        // console.log(saveSection);
 
         if(saveSection) {
             setProfileSection(state);
