@@ -110,7 +110,7 @@ function SocialMentionSection({setSocialMentionSection,style}) {
             <SaveAddBtnsContiner 
                 saveOnClick={handleSavingThisSection}
                 addCardOnClick={handleAddSocialMention}
-                saveBtnContent="Save Social Mention Section"
+                saveBtnContent="Save Social Section"
                 addBtnContent="Add Social Mention"
             /> 
         </div>

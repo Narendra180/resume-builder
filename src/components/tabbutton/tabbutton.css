@@ -1,12 +1,18 @@
 .tab-btn {
     background-color: rgb(42, 116, 165);
     color: white;
-    padding: 10px;
+    padding: 10px 7px;
     border: 1px solid #deffde;
     border-radius: 10px;
     font-size: 1.2rem;
     flex: 1 1 0;
     cursor: pointer;
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+
+.tab-btn:nth-last-child(1) {
+    margin-right: 0;
 }
 
 .tab-btn:hover {
@@ -16,4 +22,8 @@
 
 .tab-btn:active {
     background-color: rgb(31, 83, 117);
+}
+
+.tab-btn.active {
+    background-color: rgb(28, 82, 117);
 }

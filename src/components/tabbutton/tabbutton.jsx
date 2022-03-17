@@ -1,9 +1,9 @@
 import './tabbutton.css';
 
-function TabButton({tabNumber, btnContent, handleTabButtonClick}) {
+function TabButton({tabNumber, btnContent, handleTabButtonClick, className}) {
     return (
         <button 
-            className="tab-btn"
+            className={`tab-btn ${className}`}
             onClick={
                 () => handleTabButtonClick(tabNumber)
             }
