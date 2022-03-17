@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { setProfileSection } from '../../redux/profile/profileaction';
 import CustomInput from "../custominput/custom-input";
 import CustomFileUploadBtn from "../custom-file-upload-btn/custom-file-upload-btn";
+import Button from "../btn/btn";
 import './ProfileSection.css';
 
 function ProfileSection({setProfileSection, style}) {
@@ -151,71 +152,75 @@ function ProfileSection({setProfileSection, style}) {
     }
 
     return (
-        <div style={style}>
-            <form
-                id="profile-section-form"
-                onSubmit={handleSubmit} 
-                style={{backgroundColor: "#deffde"}}
-                noValidate
-            >        
+        <div style={style} className="profile-section-con">
+            <div className="profile-section-form-container">
+                <form
+                    id="profile-section-form"
+                    onSubmit={handleSubmit} 
+                    // style={{backgroundColor: "#deffde"}}
+                    noValidate
+                >        
 
-                <CustomInput
-                    label={"First Name"}
-                    name="firstname"
-                    value={state.firstname}
-                    onChange={handleChange}
-                    type="text"
-                    required
-                    warning={warningStatesOfCustomInputs["firstnameWM"]}
-                />
+                    <CustomInput
+                        label={"First Name"}
+                        name="firstname"
+                        value={state.firstname}
+                        onChange={handleChange}
+                        type="text"
+                        required
+                        warning={warningStatesOfCustomInputs["firstnameWM"]}
+                    />
 
-                <CustomInput
-                    label={"Last Name"}
-                    name="lastname"
-                    value={state.lastname}
-                    onChange={handleChange}
-                    type="text"
-                    required
-                    warning={warningStatesOfCustomInputs["lastnameWM"]}
-                />
+                    <CustomInput
+                        label={"Last Name"}
+                        name="lastname"
+                        value={state.lastname}
+                        onChange={handleChange}
+                        type="text"
+                        required
+                        warning={warningStatesOfCustomInputs["lastnameWM"]}
+                    />
 
-                <CustomInput
-                    label={"Phone Number"}
-                    name="phonenumber"
-                    value={state.phonenumber}
-                    onChange={handleChange}
-                    pattern="\d*"
-                    type="tel"
-                    maxLength="10"
-                    title="only numbers allowed"
-                    required
-                    warning={warningStatesOfCustomInputs["phonenumberWM"]}
-                />
+                    <CustomInput
+                        label={"Phone Number"}
+                        name="phonenumber"
+                        value={state.phonenumber}
+                        onChange={handleChange}
+                        pattern="\d*"
+                        type="tel"
+                        maxLength="10"
+                        title="only numbers allowed"
+                        required
+                        warning={warningStatesOfCustomInputs["phonenumberWM"]}
+                    />
 
-                <CustomFileUploadBtn 
-                    onChange={handlImageChange}
-                    name="profilepicture"
-                    accept="image/*"
-                    btnText={"Choose Profile Picture"}
-                    required
-                    warning={warningStatesOfCustomInputs["profilePictureWM"]}
-                />
+                    <CustomFileUploadBtn 
+                        onChange={handlImageChange}
+                        name="profilepicture"
+                        accept="image/*"
+                        btnText={"Choose Profile Picture"}
+                        required
+                        warning={warningStatesOfCustomInputs["profilePictureWM"]}
+                    />
 
-                {/* TA means textarea*/}
-                <CustomInput
-                    label={"Address"}
-                    name="address"
-                    value={state.address}
-                    onChange={handleChange}
-                    required
-                    component={"TA"}
-                    warning={warningStatesOfCustomInputs["addressWM"]}
-                />
+                    {/* TA means textarea*/}
+                    <CustomInput
+                        label={"Address"}
+                        name="address"
+                        value={state.address}
+                        onChange={handleChange}
+                        required
+                        component={"TA"}
+                        warning={warningStatesOfCustomInputs["addressWM"]}
+                    />
 
-                <button type="submit">
-                    save
-                </button>
-            </form>
+                    <Button
+                        className="profile-section-save-btn"
+                        btnContent="Save Profile Section"
+                        type="submit"
+                    />
+                </form>
+            </div>
         </div>
     );
 }

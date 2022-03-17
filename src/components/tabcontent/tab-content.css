@@ -2,4 +2,84 @@
     /* width: 200px; */
     display: flex;
     justify-content: center;
+    /* padding: 10px; */
+    /* background-color: rgba(115, 112, 255, 0.4); */
+    border-radius: 8px;
+}
+
+.tab-content .add-btn {
+    background-color: rgb(64, 0, 241);
+    border: 1px solid rgb(102, 47, 255);
+}
+
+.tab-content .custom-input-con-parent-div {
+    color: rgb(31, 0, 63);
+}
+
+.tab-content .card {
+    background-color: rgba(208, 228, 238, 0.6);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.tab-content .custom-input-con-parent-div .ci-fieldset {
+    border: 1px solid rgb(184, 108, 255);
+}
+
+.tab-content .custom-input-con-parent-div .custom-input-con.hovered .ci-fieldset {
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.tab-content .custom-input-con-parent-div .custom-input-con.focused .ci-fieldset{
+    border: 2px solid rgb(89, 0, 255);
+}
+
+.tab-content > div {
+    position: relative;
+    /* width: 90%; */
+    width: 100%;
+    /* background-color: rgba(115, 112, 255, 0.4); */
+    /* padding: 10px; */
+    border-radius: 8px;
+    min-width: 300px;
+    height: 350px;
+}
+
+.tab-content .cards-list {
+    height: 310px;
+    overflow: auto;
+}
+
+.tab-content .save-add-card-btn-container {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    margin-top: 15px;
+}
+
+/* width */
+.tab-content .cards-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.tab-content .cards-list::-webkit-scrollbar-track {
+    background: rgb(212, 212, 212); 
+    border-radius: 10px;
+}
+
+/* Handle */
+.tab-content .cards-list::-webkit-scrollbar-thumb {
+    background: rgb(112, 112, 112); 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.tab-content .cards-list::-webkit-scrollbar-thumb:hover {
+    background: #858585; 
+}
+
+.tab-content .delete-btn {
+    background-color: rgb(163, 135, 135);
 }

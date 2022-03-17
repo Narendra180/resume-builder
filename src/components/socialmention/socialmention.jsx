@@ -1,6 +1,6 @@
 import { forwardRef, useState } from "react";
-import FormInput from "../forminput/form-input";
-import FormTextarea from "../formtextarea/form-textarea";
+import Button from "../btn/btn";
+import CustomInput from "../custominput/custom-input";
 
 const SocialMention = forwardRef(({addData,id,deleteSocialMention}, ref) => {
     const [state,setState] = useState({
@@ -18,7 +18,7 @@ const SocialMention = forwardRef(({addData,id,deleteSocialMention}, ref) => {
     }
 
     return (
-        <div className="social-mention-form">
+        <div className="social-mention-form card">
             <form
                 onSubmit={handleSubmit}
                 onKeyPress={
@@ -28,30 +28,28 @@ const SocialMention = forwardRef(({addData,id,deleteSocialMention}, ref) => {
                 }
                 data-id={id}
             >
-                <FormInput
-                    label={"Name of Social Media: "}
-                    id="nameofsocialmedia" 
+                <CustomInput
+                    label={"Name of Social Media"}
                     name="nameofsocialmedia"
                     value={state.nameofsocialmedia}
                     onChange={handleChange}
                     type="text"
                 />
 
-                <FormTextarea
-                    label={"Links: "}
-                    id="links" 
+                <CustomInput
+                    label={"Links"}
                     name="links"
                     value={state.links}
                     onChange={handleChange}
                     type="text"
                 />
                 
-                <button
+                <Button 
+                    className="delete-btn"
+                    btnContent="Delete"
                     type="button"
                     onClick={() => deleteSocialMention(id)}
-                >
-                    &#10005;
-                </button>
+                />
 
                 <button
                     style={

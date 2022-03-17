@@ -1,5 +1,7 @@
 import { useState, forwardRef } from "react";
-import FormInput from "../forminput/form-input";
+import CustomInput from "../custominput/custom-input";
+import Button from "../btn/btn";
+import './course.css';
 
 const Course = forwardRef((props, ref) => {
 
@@ -21,7 +23,7 @@ const Course = forwardRef((props, ref) => {
     }
 
     return (
-        <div className="course-from-div">
+        <div className="course-from-div card">
             <form id="course-form" 
                 onKeyPress={(e) => { 
                     e.key==="Enter" && e.preventDefault();
@@ -29,9 +31,8 @@ const Course = forwardRef((props, ref) => {
                 onSubmit={handleSubmit}
                 data-id = {props.id}
             >
-                <FormInput
-                    label={"Name of Course: "}
-                    id="nameofcourse" 
+                <CustomInput
+                    label={"Name of Course"}
                     name="nameofcourse"
                     value={state.nameofcourse}
                     onChange={handleChange}
@@ -39,9 +40,8 @@ const Course = forwardRef((props, ref) => {
                     required
                 />
 
-                <FormInput
-                    label={"Course Completion Year: "}
-                    id="coursecompletionyear" 
+                <CustomInput
+                    label={"Course Completion Year"}
                     name="coursecompletionyear"
                     value={state.coursecompletionyear}
                     onChange={handleChange}
@@ -49,9 +49,8 @@ const Course = forwardRef((props, ref) => {
                     required
                 />
 
-                <FormInput
-                    label={"College/School Name : "}
-                    id="collegeschoolname" 
+                <CustomInput
+                    label={"College/School Name "}
                     name="collegeschoolname"
                     value={state.collegeschoolname}
                     onChange={handleChange}
@@ -59,9 +58,8 @@ const Course = forwardRef((props, ref) => {
                     required
                 />
 
-                <FormInput
-                    label={"Percentage: "}
-                    id="percentage" 
+                <CustomInput
+                    label={"Percentage"}
                     name="percentage"
                     value={state.percentage}
                     onChange={handleChange}
@@ -69,12 +67,12 @@ const Course = forwardRef((props, ref) => {
                     required
                 />
 
-                <button
+                <Button 
+                    className="delete-btn"
+                    btnContent="Delete"
                     type="button"
                     onClick={() => props.deleteCourse(props.id)}
-                >
-                    &#10005;
-                </button>
+                />
 
                 <button 
                     style={{display: "none"}}

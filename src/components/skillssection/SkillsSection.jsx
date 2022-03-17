@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Skill from '../skill/skill';
 import { setSkillsSection } from '../../redux/skills/skillactions';
 import { connect } from 'react-redux';
+import SaveAddBtnsContiner from '../save-add-card-con/save-add-card-con';
 
 function SkillSection({ setSkillsSection, style }) {
 
@@ -102,19 +103,18 @@ function SkillSection({ setSkillsSection, style }) {
 
     return (
         <div style={style}>
-            {skillsArray}
-
-            <button
-                onClick={handleSavingThisSection}
+            <div
+                className='cards-list'
             >
-                save
-            </button>
+                {skillsArray}
+            </div>
 
-            <button
-                onClick={handleAddSkill}
-            >
-                Add Skill
-            </button>
+            <SaveAddBtnsContiner 
+                saveOnClick={handleSavingThisSection}
+                addCardOnClick={handleAddSkill}
+                saveBtnContent="Save Skills Section"
+                addBtnContent="Add Skill"
+            />
         </div>
     );
 }

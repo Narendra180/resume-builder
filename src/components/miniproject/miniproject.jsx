@@ -1,6 +1,6 @@
 import { useState, forwardRef } from "react";
-import FormInput from "../forminput/form-input";
-import FormTextarea from "../formtextarea/form-textarea";
+import Button from "../btn/btn";
+import CustomInput from "../custominput/custom-input";
 
 const MiniProject = forwardRef(({addData,id, deleteMiniProject}, ref) => {
         const [state,setState] = useState({
@@ -20,7 +20,7 @@ const MiniProject = forwardRef(({addData,id, deleteMiniProject}, ref) => {
         }
 
         return (
-            <div className="mini-project-form">
+            <div className="mini-project-form card">
                 <form 
                     onSubmit={handleSubmit}
                     onKeyPress={(event) => {
@@ -28,39 +28,38 @@ const MiniProject = forwardRef(({addData,id, deleteMiniProject}, ref) => {
                     }}
                     data-id = {id}
                 >
-                    <FormInput
-                        label={"Project Name: "}
-                        id="projectname" 
+                    <CustomInput
+                        label={"Project Name"}
                         name="projectname"
                         value={state.projectname}
                         onChange={handleChange}
                         type="text"
                     />
 
-                    <FormTextarea
-                        label={"Tech Stack Used: "}
-                        id="techstackused" 
+                    <CustomInput
+                        label={"Tech Stack Used"}
                         name="techstackused"
                         value={state.techstackused}
                         onChange={handleChange}
                         type="text"
+                        component={"TA"}
                     />
 
-                    <FormTextarea
-                        label={"Project Description: "}
-                        id="projectdescription" 
+                    <CustomInput
+                        label={"Project Description"}
                         name="projectdescription"
                         value={state.projectdescription}
                         onChange={handleChange}
                         type="text"
+                        component={"TA"}
                     />
 
-                    <button
-                    type="button"
-                    onClick={() => deleteMiniProject(id)}
-                    >
-                        &#10005;
-                    </button>
+                    <Button 
+                        className="delete-btn"
+                        btnContent="Delete"
+                        type="button"
+                        onClick={() => deleteMiniProject(id)}
+                    />
 
                     <button
                         style={

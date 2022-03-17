@@ -3,6 +3,8 @@ import { useState, useRef, useEffect } from "react";
 import Course from "../course/course";
 import { connect } from "react-redux";
 import { setEducationSection } from '../../redux/education/educationaction';
+import SaveAddBtnsContiner from '../save-add-card-con/save-add-card-con';
+import "./educationsection.css";
 
 function EducationSection({ setEducationSection, style }) {
 
@@ -104,17 +106,18 @@ function EducationSection({ setEducationSection, style }) {
 
     return (
         <div style={style}>
-            {coursesArray}
-            <button
-                onClick={handleSavingThisSection}
+            <div
+                className='cards-list'
             >
-                save
-            </button>
-            <button
-                onClick={handleAddCourse}
-            >
-                Add Course
-            </button>
+                {coursesArray}            
+            </div>
+
+            <SaveAddBtnsContiner 
+                saveOnClick={handleSavingThisSection}
+                addCardOnClick={handleAddCourse}
+                saveBtnContent="Save Education Section"
+                addBtnContent="Add Course"
+            /> 
         </div>
     );
 }

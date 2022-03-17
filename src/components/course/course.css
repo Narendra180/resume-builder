@@ -1,8 +1,8 @@
-.profile-section-con {
+.course-from-div {
     /* background-color: rgba(208, 228, 238, 0.9); */
     background-color: rgba(208, 228, 238, 0.5);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
 }
 
-.profile-section-form-container {
-    padding: 10px;
-}

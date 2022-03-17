@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import MiniProject from '../miniproject/miniproject';
 import { setMiniProjectSection } from '../../redux/miniproject/miniprojectaction';
 import { connect } from 'react-redux';
+import SaveAddBtnsContiner from '../save-add-card-con/save-add-card-con';
 
 function MiniProjectSection({ setMiniProjectSection, style }) {
 
@@ -102,17 +103,18 @@ function MiniProjectSection({ setMiniProjectSection, style }) {
 
     return (
         <div style={style}>
-            {miniProjectsArray}
-            <button
-                onClick={handleSavingThisSection}
+            <div
+                className='cards-list'
             >
-                save
-            </button>
-            <button
-                onClick={handleAddProject}
-            >
-                Add Project
-            </button>
+                {miniProjectsArray}
+            </div>
+
+            <SaveAddBtnsContiner 
+                saveOnClick={handleSavingThisSection}
+                addCardOnClick={handleAddProject}
+                saveBtnContent="Save Projects Section"
+                addBtnContent="Add Project"
+            />
         </div>
     );
 }

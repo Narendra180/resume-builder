@@ -1,5 +1,7 @@
 import { useState, forwardRef } from "react";
-import FormInput from "../forminput/form-input"
+import CustomInput from "../custominput/custom-input";
+import Button from "../btn/btn";
+import "./skill.css";
 
 const Skill = forwardRef((props,ref) => {
     const [state,setState] = useState({
@@ -18,7 +20,7 @@ const Skill = forwardRef((props,ref) => {
     
     // console.log(props)
     return (
-        <div>
+        <div className="card">
             <form 
                 id="skill-form"
                 onSubmit={handleSubmit}
@@ -27,22 +29,21 @@ const Skill = forwardRef((props,ref) => {
                 }
                 data-id={props.id}
             >
-                <FormInput
-                    label={"Skill: "}
-                    id="skill" 
+                <CustomInput
+                    label={"Skill"}
                     name="skill"
                     value={state.skill}
                     onChange={handleChange}
                     type="text"
                     required
                 />
-
-                <button
+                
+                <Button 
+                    className="delete-btn"
+                    btnContent="Delete"
                     type="button"
                     onClick={() => props.deleteCourse(props.id)}
-                >
-                    &#10005;
-                </button>
+                />
 
                 <button 
                     style={{display: "none"}}

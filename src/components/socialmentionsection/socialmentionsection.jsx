@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import SocialMention from '../socialmention/socialmention';
 import { connect } from 'react-redux';
 import { setSocialMentionSection } from '../../redux/socialmention/socialmentionaction';
+import SaveAddBtnsContiner from '../save-add-card-con/save-add-card-con';
 
 function SocialMentionSection({setSocialMentionSection,style}) {
 
@@ -99,18 +100,19 @@ function SocialMentionSection({setSocialMentionSection,style}) {
     }
 
     return (
-        <div style={style}> 
-            {socialMentionArray}
-
-            <button onClick={handleSavingThisSection}>
-                save
-            </button>
-
-            <button
-                onClick={handleAddSocialMention}
+        <div style={style}>
+            <div
+                className='cards-list'
             >
-                Add Social Mention
-            </button>
+                {socialMentionArray}
+            </div>
+
+            <SaveAddBtnsContiner 
+                saveOnClick={handleSavingThisSection}
+                addCardOnClick={handleAddSocialMention}
+                saveBtnContent="Save Social Mention Section"
+                addBtnContent="Add Social Mention"
+            /> 
         </div>
     );
 }
