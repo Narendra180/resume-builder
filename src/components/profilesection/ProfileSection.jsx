@@ -153,10 +153,10 @@ function ProfileSection({setProfileSection, style}) {
 
     return (
         <div style={style} className="profile-section-con">
-            <div className="profile-section-form-container">
+            <div className="profile-section-form-container cards-list">
                 <form
                     id="profile-section-form"
-                    onSubmit={handleSubmit} 
+                    // onSubmit={handleSubmit} 
                     // style={{backgroundColor: "#deffde"}}
                     noValidate
                 >        
@@ -212,15 +212,17 @@ function ProfileSection({setProfileSection, style}) {
                         required
                         component={"TA"}
                         warning={warningStatesOfCustomInputs["addressWM"]}
-                    />
-
-                    <Button
-                        className="profile-section-save-btn"
-                        btnContent="Save Profile Section"
-                        type="submit"
-                    />
-                </form>
+                    />                    
+                </form>               
             </div>
+            <div className="save-add-card-btn-container">
+                <Button
+                    className="profile-section-save-btn"
+                    btnContent="Save Profile Section"
+                    type="submit"
+                    onClick={handleSubmit}
+                />
+            </div>            
         </div>
     );
 }

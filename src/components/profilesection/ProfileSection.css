@@ -1,8 +1,14 @@
 .profile-section-con {
     /* background-color: rgba(208, 228, 238, 0.9); */
-    background-color: rgba(208, 228, 238, 0.6);
+    /* background-color: rgba(208, 228, 238, 0.6); */
 }
 
 .profile-section-form-container {
     padding: 10px;
+    padding-bottom: 0;
+    background-color: rgba(208, 228, 238, 0.6);
+    max-height: 310px;
+    overflow: auto;
+    border-radius: 8px;
 }
+

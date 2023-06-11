@@ -5,21 +5,25 @@ function CustomFileUploadBtn({id,btnText,warning, ...otherProps}) {
         <div
             className="custom-file-upload-btn-con-prent-div"
         >
-            <div
-                className="custom-file-upload-btn-con"
-                id={id?id:"cfubc"}
-            >
-                <label
-                    className="upload-btn-label"
+            <div>
+                <div
+                    className="custom-file-upload-btn-con"
+                    id={id?id:"cfubc"}
                 >
-                    {btnText?btnText:"Choose File"}
-                    <input
-                        className="input-file" 
-                        type="file"
-                        {...otherProps}
-                    />
-                </label>
-            </div>      
+                    <label
+                        className="upload-btn-label"
+                    >
+                        {btnText?btnText:"Choose File"}
+                        <input
+                            className="input-file" 
+                            type="file"
+                            {...otherProps}
+                        />
+                    </label>
+                </div>      
+
+                
+            </div>
 
             {
                 warning
@@ -29,7 +33,6 @@ function CustomFileUploadBtn({id,btnText,warning, ...otherProps}) {
                 ""
             }
         </div>
-          
     );
 }
 
